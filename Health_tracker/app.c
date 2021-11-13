@@ -42,7 +42,7 @@
 #include "src/ble.h"
 #include "src/lcd.h"
 #include "src/cb.h"
-
+#include "src/adc.h"
 // Include logging for this file
 #define INCLUDE_LOG_DEBUG 1
 #include "src/log.h"
@@ -92,15 +92,16 @@ SL_WEAK void app_init(void)
   // Put your application 1-time init code here
   // This is called once during start-up.
   // Don't call any Bluetooth API functions until after the boot event.
-  gpioInit();
+//  gpioInit();
   Clock_init();
-  I2C_init();
+//  I2C_init();
   le_timer_init();
-  displayInit();
-  create_cb(50);
-  displayPrintf(DISPLAY_ROW_ASSIGNMENT,"A8");
-
-  displayPrintf(DISPLAY_ROW_NAME,BLE_DEVICE_TYPE_STRING);
+  ADC_init();
+//  displayInit();
+//  create_cb(50);
+//  displayPrintf(DISPLAY_ROW_ASSIGNMENT,"A8");
+//
+//  displayPrintf(DISPLAY_ROW_NAME,BLE_DEVICE_TYPE_STRING);
 
 
   if(LOWEST_ENERGY_MODE == EM1){

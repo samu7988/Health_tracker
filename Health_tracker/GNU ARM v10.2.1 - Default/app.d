@@ -118,7 +118,11 @@ app.o: ../app.c \
  ../src/i2c.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/oscillator.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/timer.h \
- ../src/scheduler.h ../src/ble.h ../src/cb.h ../src/log.h
+ ../src/scheduler.h ../src/ble.h ../src/cb.h ../src/adc.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_chip.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_system.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h \
+ ../src/log.h
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\toolchain\inc/sl_gcc_preinclude.h:
 ../app.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_common.h:
@@ -247,4 +251,8 @@ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_
 ../src/scheduler.h:
 ../src/ble.h:
 ../src/cb.h:
+../src/adc.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_chip.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_system.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h:
 ../src/log.h:

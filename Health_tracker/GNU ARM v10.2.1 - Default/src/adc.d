@@ -68,7 +68,24 @@ src/adc.o: ../src/adc.c \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_core.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_emu.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_gpio.h \
- D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/log.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\app\common\util\app_log/app_log.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_status.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_enum.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_iostream_handles.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_iostream_init_usart_instances.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_component_catalog.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\power_manager\inc/sl_power_manager.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/sl_power_manager_config.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_slist.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_assert.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\sleeptimer\inc/sl_sleeptimer.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/sl_sleeptimer_config.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream_uart.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/app_log_config.h
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\toolchain\inc/sl_gcc_preinclude.h:
 ../src/adc.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\Device\SiliconLabs\EFR32BG13P\Include/em_device.h:
@@ -139,3 +156,20 @@ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_emu.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_gpio.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/log.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\app\common\util\app_log/app_log.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_status.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_enum.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_iostream_handles.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_iostream_init_usart_instances.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\autogen/sl_component_catalog.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\power_manager\inc/sl_power_manager.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/sl_power_manager_config.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\inc/sl_slist.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_assert.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\sleeptimer\inc/sl_sleeptimer.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/sl_sleeptimer_config.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream_uart.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\service\iostream\inc/sl_iostream.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\config/app_log_config.h:

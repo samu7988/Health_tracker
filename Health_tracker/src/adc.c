@@ -13,22 +13,21 @@
 //***********************************************************************************
 
 #include "adc.h"
+// Include logging for this file
+#define INCLUDE_LOG_DEBUG 1
+#include "src/log.h"
 //***********************************************************************************
 // Macros
 //***********************************************************************************
 #define adcFreq   16000000
-#define NUM_INPUTS (2)
-#define MAX_VOLTAGE_L 2640
-#define MAX_VOLTAGE_R 2640
-#define MIN_VOLTAGE_L 2120
-#define MIN_VOLTAGE_R 1785
+#define NUM_INPUTS (1)
+
 //***********************************************************************************
 // Global variables
 //***********************************************************************************
 
 volatile uint32_t sample;
 volatile uint32_t millivolts;
-uint32_t inputs[NUM_INPUTS];
 
 //***********************************************************************************
 // Function implementation
@@ -49,38 +48,38 @@ void ADC_init(){
 
     // Declare init structs
     ADC_Init_TypeDef init = ADC_INIT_DEFAULT;
-    ADC_InitScan_TypeDef initScan = ADC_INITSCAN_DEFAULT;
+    ADC_InitSingle_TypeDef  initScan = ADC_INITSCAN_DEFAULT;
 
     // Modify init structs
     init.prescale   = ADC_PrescaleCalc(adcFreq, 0);
+    init.timebase = ADC_TimebaseCalc(0);
+
 
     initScan.diff       = 0;            // single ended
-    initScan.reference  = adcRef2V5;    // internal 2.5V reference
+    initScan.reference  = adcRef2V5;    // internal 5V reference
     initScan.resolution = adcRes12Bit;  // 12-bit resolution
     initScan.acqTime    = adcAcqTime4;  // set acquisition time to meet minimum requirement
     initScan.fifoOverwrite = true;      // FIFO overflow overwrites old data
 
     // Select ADC input.
     // Add VDD to scan for demonstration purposes
-    ADC_ScanSingleEndedInputAdd(&initScan, adcScanInputGroup0, adcPosSelAPORT2XCH23); //PF7
-    ADC_ScanSingleEndedInputAdd(&initScan, adcScanInputGroup1, adcPosSelAPORT4XCH5); //PD13
+    initScan.posSel = adcPosSelAPORT2XCH9;
 
-    // Set scan data valid level (DVL) to 2. This will cause the scan IRQ to set when DVL +1 input channels have been converted and result is stored in FIFO
-    ADC0->SCANCTRLX |= (NUM_INPUTS - 1) << _ADC_SCANCTRLX_DVL_SHIFT;
-
-    // Clear ADC Scan fifo
-    ADC0->SCANFIFOCLEAR = ADC_SCANFIFOCLEAR_SCANFIFOCLEAR;
 
     // Initialize ADC and Scan
     ADC_Init(ADC0, &init);
-    ADC_InitScan(ADC0, &initScan);
+    ADC_InitSingle(ADC0, &initScan);
 
     // Enable Scan interrupts
-    ADC_IntEnable(ADC0, ADC_IEN_SCAN);
+    ADC_IntEnable(ADC0, ADC_IEN_SINGLE);
 
     // Enable ADC interrupts
     NVIC_ClearPendingIRQ(ADC0_IRQn);
     NVIC_EnableIRQ(ADC0_IRQn);
+
+    //Start with first conversion
+    ADC_Start(ADC0, adcStartSingle);
+
 }
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*
@@ -97,31 +96,19 @@ void ADC_init(){
 void ADC0_IRQHandler(void)
 {
 
-    uint32_t data_byte, i, id;
+    uint32_t adc_reading;
 
-    // Get ADC results
-    for(i = 0; i < NUM_INPUTS; i++)
-    {
+
       // Read data from ADC
-     data_byte = ADC_DataIdScanGet(ADC0, &id);
+     adc_reading = ADC_DataSingleGet(ADC0);
 
       // Convert data to mV and store into array
-      inputs[i] = data_byte;
-      if(inputs[i] >=MIN_VOLTAGE_L && inputs[i]<=MAX_VOLTAGE_L && i==0)
-      {
-        inputs[i] = (inputs[i]-MIN_VOLTAGE_L)*255/(MAX_VOLTAGE_L-MIN_VOLTAGE_L);
-      }
-      else if(inputs[i] <MIN_VOLTAGE_L && i==0)
-      {
-        inputs[i] =0;
-      //inputs[i] = data * 2500 / 4096;
-      }
-      else if(inputs[i]>MAX_VOLTAGE_L && i==0)
-      {
-        inputs[i] = 255;
-      }
+     //analog_val = (adc_reading) * (SYSTEM_VOLTAGE)/(ADC_RESOLUTION)
 
+      millivolts = adc_reading * 2500 / 4096;
+      LOG_INFO("ADC voltage: %u\n\r",millivolts);
 
-    }
     // Start next ADC conversion
+    //ADC_Start(ADC0, adcStartSingle);
+
 }
