@@ -1,0 +1,894 @@
+!SESSION 2021-11-10 22:20:20.568 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-10 22:20:22.082
+!MESSAGE ContentServer started at: 127.0.0.1, 51324
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-10 22:20:22.094
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY com.silabs.ss.support.browser.html 1 0 2021-11-10 22:20:26.600
+!MESSAGE Browser workarea set to: D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker\.browser
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-10 22:20:33.580
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-10 22:22:09.942
+!MESSAGE selectedProfileId: null; defaultProfileId: GNU with spaces
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-10 22:22:19.429
+!MESSAGE Indexed 'ecen5823-project-samu7988' (117 sources, 377 headers) in 7.51 sec: 24,829 declarations; 58,577 references; 0 unresolved inclusions; 159 syntax errors; 10 unresolved names (0.012%)
+
+!ENTRY org.eclipse.ui 4 0 2021-11-10 23:46:55.787
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalStateException
+	at com.teamdev.jxbrowser.deps.com.google.common.base.Preconditions.checkState(Preconditions.java:492)
+	at com.teamdev.jxbrowser.internal.rpc.UniversalServiceConnection.invokeAsync(UniversalServiceConnection.java:198)
+	at com.teamdev.jxbrowser.browser.internal.BrowserWidget.hide(BrowserWidget.java:187)
+	at com.teamdev.jxbrowser.view.swt.internal.WindowedWidget.hide(WindowedWidget.java:182)
+	at com.teamdev.jxbrowser.view.swt.internal.WindowedWidget.close(WindowedWidget.java:114)
+	at com.teamdev.jxbrowser.view.swt.internal.SafeExecutor.lambda$executeSilently$1(SafeExecutor.java:87)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3963)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3590)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:823)
+	at org.eclipse.jface.window.Window.open(Window.java:799)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchWindowAdvisor.promptOnExit(IDEWorkbenchWindowAdvisor.java:223)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$0(IDEWorkbenchAdvisor.java:158)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4175)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4167)
+	at org.eclipse.swt.widgets.Display.messageProc(Display.java:3183)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProc(Native Method)
+	at org.eclipse.swt.widgets.Shell.callWindowProc(Shell.java:485)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2124)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4819)
+	at org.eclipse.swt.internal.win32.OS.PeekMessage(Native Method)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3582)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:660)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at com.silabs.ss.platform.internal.product.Application.start(Application.java:38)
+	at com.silabs.ss.tool.launcher.internal.product.StudioV5Application.start(StudioV5Application.java:36)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+!SESSION 2021-11-12 20:25:09.605 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-12 20:25:11.265
+!MESSAGE ContentServer started at: 127.0.0.1, 50439
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-12 20:25:11.281
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-11-12 20:25:11.757
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-12 20:25:23.853
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 20:26:17.907
+!MESSAGE Invalid discovery key: null
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-12 20:29:14.962
+!MESSAGE Indexed 'ecen5823-assignment8-samu7988' (124 sources, 384 headers) in 10.3 sec: 25,266 declarations; 60,168 references; 0 unresolved inclusions; 163 syntax errors; 10 unresolved names (0.012%)
+
+!ENTRY org.eclipse.core.resources 4 1 2021-11-12 20:32:40.762
+!MESSAGE Problems occurred while refreshing local changes
+!SUBENTRY 1 org.eclipse.core.resources 4 1 2021-11-12 20:32:40.763
+!MESSAGE Problems occurred while refreshing local changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:980)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:960)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1557)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:166)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: The project description file (.project) for 'ecen5823-assignment8-samu7988' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+java.lang.Exception: The project description file (.project) for 'ecen5823-assignment8-samu7988' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:907)
+	at org.eclipse.core.internal.resources.Project.updateDescription(Project.java:1346)
+	at org.eclipse.core.internal.resources.File.updateMetadataFiles(File.java:376)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.visit(RefreshLocalVisitor.java:291)
+	at org.eclipse.core.internal.localstore.UnifiedTree.accept(UnifiedTree.java:118)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:977)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:960)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1557)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:166)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 2 org.eclipse.core.resources 4 271 2021-11-12 20:32:40.766
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 3 org.eclipse.core.resources 4 567 2021-11-12 20:32:40.766
+!MESSAGE The project description file (.project) for 'ecen5823-assignment8-samu7988' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!STACK 0
+java.lang.Exception: The project description file (.project) for 'ecen5823-assignment8-samu7988' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:907)
+	at org.eclipse.core.internal.resources.Project.updateDescription(Project.java:1346)
+	at org.eclipse.core.internal.resources.File.updateMetadataFiles(File.java:376)
+	at org.eclipse.core.internal.localstore.RefreshLocalVisitor.visit(RefreshLocalVisitor.java:291)
+	at org.eclipse.core.internal.localstore.UnifiedTree.accept(UnifiedTree.java:118)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:977)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:960)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1557)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:166)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.ui.ide 4 4 2021-11-12 20:33:23.545
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2021-11-12 20:33:23.547
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2021-11-12 20:33:23.547
+!MESSAGE The project description file (.project) for 'ecen5823-assignment8-samu7988' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-12 20:33:24.466
+!MESSAGE Deleted Shared Daemon File: C:\Users\mules\.uc\cli\mainstudio.running
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-12 20:33:24.467
+!MESSAGE Deleted Shared Daemon Version File: C:\Users\mules\.uc\cli\mainstudio.running.version
+!SESSION 2021-11-12 20:33:30.256 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-12 20:33:31.897
+!MESSAGE ContentServer started at: 127.0.0.1, 55092
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-12 20:33:31.912
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 20:33:38.497
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.625
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.computeLabel(SLSProjectLabelDecorator.java:179)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.decorate(SLSProjectLabelDecorator.java:160)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:247)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:105)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:360)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.777
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.780
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.781
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.782
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.782
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.788
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:39.788
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.doRefreshProjectLabels(SLSProjectLabelDecorator.java:102)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.lambda$0(SLSProjectLabelDecorator.java:94)
+	at org.eclipse.core.runtime.jobs.Job$1.run(Job.java:164)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:41.170
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.computeLabel(SLSProjectLabelDecorator.java:179)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.decorate(SLSProjectLabelDecorator.java:160)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:247)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:105)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:360)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-12 20:33:41.405
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:42.258
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.computeLabel(SLSProjectLabelDecorator.java:179)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.decorate(SLSProjectLabelDecorator.java:160)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:247)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:105)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:360)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:50.529
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.tool.energyprofiler.internal.launch.ui.EnergyProfilerUIUtils.isEnergyProfileable(EnergyProfilerUIUtils.java:35)
+	at com.silabs.ss.tool.energyprofiler.internal.launch.ui.SelectionHandler.selectionChanged(SelectionHandler.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:240)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handleSelectionChanged(SelectionService.java:94)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$0(SelectionService.java:68)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$1.run(SelectionAggregator.java:123)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:50.789
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.computeLabel(SLSProjectLabelDecorator.java:179)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.decorate(SLSProjectLabelDecorator.java:160)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:247)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:105)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:360)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:51.312
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.tool.energyprofiler.internal.launch.ui.EnergyProfilerUIUtils.isEnergyProfileable(EnergyProfilerUIUtils.java:35)
+	at com.silabs.ss.tool.energyprofiler.internal.launch.ui.SelectionHandler.selectionChanged(SelectionHandler.java:39)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.notifyListeners(SelectionService.java:240)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.handleSelectionChanged(SelectionService.java:94)
+	at org.eclipse.ui.internal.e4.compatibility.SelectionService.lambda$0(SelectionService.java:68)
+	at org.eclipse.e4.ui.internal.workbench.SelectionAggregator$1.run(SelectionAggregator.java:123)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:51.591
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.computeLabel(SLSProjectLabelDecorator.java:179)
+	at com.silabs.ss.framework.ide.internal.project.ui.SLSProjectLabelDecorator.decorate(SLSProjectLabelDecorator.java:160)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:247)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:105)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:360)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:51.763
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.tool.uc.api.core.ProjectUtils.ucProjectFromIProject(ProjectUtils.java:158)
+	at com.silabs.ss.tool.uc.editor.markers.UcMarkerManager.init(UcMarkerManager.java:239)
+	at com.silabs.ss.tool.uc.editor.Activator.start(Activator.java:63)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:842)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-12 20:33:51.766
+!MESSAGE Current config requested but there are no build configs!
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:609)
+	at com.silabs.ss.framework.ide.internal.api.project.core.cpp.BaseCppProjectHandle.getCurrentConfiguration(BaseCppProjectHandle.java:1)
+	at com.silabs.ss.tool.uc.api.core.ProjectUtils.isUcProject(ProjectUtils.java:63)
+	at com.silabs.ss.tool.uc.editor.util.UcProjectTester.test(UcProjectTester.java:25)
+	at org.eclipse.core.internal.expressions.Property.test(Property.java:65)
+	at org.eclipse.core.internal.expressions.TestExpression.evaluate(TestExpression.java:103)
+	at org.eclipse.core.internal.expressions.CompositeExpression.evaluateAnd(CompositeExpression.java:55)
+	at org.eclipse.core.internal.expressions.AndExpression.evaluate(AndExpression.java:34)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-12 20:35:01.065
+!MESSAGE Indexed 'Health_tracker' (124 sources, 384 headers) in 8.93 sec: 25,266 declarations; 60,168 references; 0 unresolved inclusions; 163 syntax errors; 10 unresolved names (0.012%)
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-12 20:45:06.326
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-12 20:45:13.554
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2021-11-12 20:45:14.250
+!MESSAGE Request for monitor: 'CountingRequestMonitor: Status ERROR: org.eclipse.cdt.dsf code=0  null children=[Status ERROR: org.eclipse.cdt.debug.edc code=0 Fail to get TCF context for process: rc.root.000440226890 java.lang.Exception: java.lang.Error: Channel is closed]' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.debug.edc 4 0 2021-11-12 20:45:14.250
+!MESSAGE Fail to get TCF context for process: rc.root.000440226890
+!STACK 0
+java.lang.Exception: java.lang.Error: Channel is closed
+	at org.eclipse.tcf.core.Command.<init>(Command.java:90)
+	at org.eclipse.tcf.internal.services.remote.ProcessesProxy$3.<init>(ProcessesProxy.java:167)
+	at org.eclipse.tcf.internal.services.remote.ProcessesProxy.getContext(ProcessesProxy.java:167)
+	at org.eclipse.cdt.debug.edc.internal.services.dsf.Processes$2.run(Processes.java:221)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:95)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.Error: Channel is closed
+	at org.eclipse.tcf.core.AbstractChannel.sendCommand(AbstractChannel.java:960)
+	at org.eclipse.tcf.core.Command.<init>(Command.java:86)
+	... 5 more
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-12 20:47:22.848
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-12 20:47:25.915
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2021-11-12 20:47:26.641
+!MESSAGE Request for monitor: 'CountingRequestMonitor: Status ERROR: org.eclipse.cdt.dsf code=0  null children=[Status ERROR: org.eclipse.cdt.debug.edc code=0 Fail to get TCF context for process: rc.root.000440226890 java.lang.Exception: java.lang.Error: Channel is closed]' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.debug.edc 4 0 2021-11-12 20:47:26.641
+!MESSAGE Fail to get TCF context for process: rc.root.000440226890
+!STACK 0
+java.lang.Exception: java.lang.Error: Channel is closed
+	at org.eclipse.tcf.core.Command.<init>(Command.java:90)
+	at org.eclipse.tcf.internal.services.remote.ProcessesProxy$3.<init>(ProcessesProxy.java:167)
+	at org.eclipse.tcf.internal.services.remote.ProcessesProxy.getContext(ProcessesProxy.java:167)
+	at org.eclipse.cdt.debug.edc.internal.services.dsf.Processes$2.run(Processes.java:221)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:95)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.Error: Channel is closed
+	at org.eclipse.tcf.core.AbstractChannel.sendCommand(AbstractChannel.java:960)
+	at org.eclipse.tcf.core.Command.<init>(Command.java:86)
+	... 5 more
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 21:59:24.454
+!MESSAGE Could not disable AEM data on the adapter: 000440226890
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 23:05:45.150
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 23:59:15.719
+!MESSAGE Unknown architecture(s) [efm32~series[2]~device_configuration[3], efm32~series[2]~device_configuration[4]] in sample app Internal Storage Bootloader (single image on 512kB device with 131072k flash base)
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 23:59:15.725
+!MESSAGE Unknown architecture(s) [efm32~series[2]~device_configuration[4]] in sample app Internal Storage Bootloader (single image on 1536kB device with 131072k flash base)
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 23:59:15.727
+!MESSAGE Unknown architecture(s) [efm32~series[2]~device_configuration[2]~flash[352K]] in sample app Internal Storage Bootloader (single image on 352kB device)
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-12 23:59:15.730
+!MESSAGE Unknown architecture(s) [efm32~series[2]~device_configuration[3], efm32~series[2]~device_configuration[4]] in sample app Internal Storage Bootloader (single image on 352kB device with 131072k flash base)
+
+!ENTRY com.silabs.ss.support.browser.html 1 0 2021-11-12 23:59:28.735
+!MESSAGE Browser workarea set to: D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker\.browser
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.329
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 55ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.366
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 30ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.610
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 177ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.721
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 71ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.825
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 99ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:00.933
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 87ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:01.029
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 91ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:01.607
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 102ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:01.701
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 88ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:01.846
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 79ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:02.532
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 60ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:04.468
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 57ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:04.529
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 53ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:04.581
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 47ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:02:04.827
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 95ms
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-13 00:02:07.721
+!MESSAGE Indexed 'Test' (26 sources, 134 headers) in 2.78 sec: 6,522 declarations; 16,620 references; 0 unresolved inclusions; 138 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.silabs.ss.framework.ide.project.ui 4 0 2021-11-13 00:11:23.725
+!MESSAGE NewProjectWizardVueServlet setBuildArtifactType exception: 
+!STACK 1
+org.eclipse.core.runtime.CoreException: project model file:/I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/peripheral_examples/series1/adc/adc_single_interrupt/SimplicityStudio/BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj is invalid
+	at com.silabs.ss.platform.api.rcp.core.StatusReporter.newCoreException(StatusReporter.java:240)
+	at com.silabs.ss.framework.project.api.core.templates.ProjectModelTemplate.createModel(ProjectModelTemplate.java:219)
+	at com.silabs.ss.framework.project.api.core.templates.ProjectModelTemplate.getMProject(ProjectModelTemplate.java:117)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.setBuildArtifactType(NewProjectWizardServlet.java:394)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.setTemplate(NewProjectWizardServlet.java:342)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.doPost(NewProjectWizardServlet.java:224)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.equinox.http.servlet.internal.HttpServiceRuntimeImpl$LegacyServlet.service(HttpServiceRuntimeImpl.java:1447)
+	at org.eclipse.equinox.http.servlet.internal.registration.EndpointRegistration.service(EndpointRegistration.java:159)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ResponseStateHandler.processRequest(ResponseStateHandler.java:67)
+	at org.eclipse.equinox.http.servlet.internal.context.DispatchTargets.doDispatch(DispatchTargets.java:117)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.dispatch(ProxyServlet.java:147)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.preprocess(ProxyServlet.java:115)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.service(ProxyServlet.java:104)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.equinox.http.jetty.internal.HttpServerManager$InternalHttpServiceServlet.service(HttpServerManager.java:306)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:760)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:547)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1607)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1297)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:485)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1577)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1212)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:500)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:547)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:270)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:117)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:388)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: java.io.FileNotFoundException: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\developer\repos\peripheral_examples\series1\adc\adc_single_interrupt\SimplicityStudio\BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj (The system cannot find the path specified)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+	at com.silabs.ss.framework.project.api.core.templates.ProjectModelTemplate.createModel(ProjectModelTemplate.java:217)
+	... 44 more
+Caused by: java.io.FileNotFoundException: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\developer\repos\peripheral_examples\series1\adc\adc_single_interrupt\SimplicityStudio\BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj (The system cannot find the path specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at org.eclipse.emf.ecore.resource.impl.FileURIHandlerImpl.createInputStream(FileURIHandlerImpl.java:99)
+	at org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl.createInputStream(ExtensibleURIConverterImpl.java:360)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1314)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 46 more
+!SUBENTRY 1 com.silabs.ss.framework.project.core 4 0 2021-11-13 00:11:23.728
+!MESSAGE project model file:/I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/peripheral_examples/series1/adc/adc_single_interrupt/SimplicityStudio/BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj is invalid
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: java.io.FileNotFoundException: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\developer\repos\peripheral_examples\series1\adc\adc_single_interrupt\SimplicityStudio\BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj (The system cannot find the path specified)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+	at com.silabs.ss.framework.project.api.core.templates.ProjectModelTemplate.createModel(ProjectModelTemplate.java:217)
+	at com.silabs.ss.framework.project.api.core.templates.ProjectModelTemplate.getMProject(ProjectModelTemplate.java:117)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.setBuildArtifactType(NewProjectWizardServlet.java:394)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.setTemplate(NewProjectWizardServlet.java:342)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.NewProjectWizardServlet.doPost(NewProjectWizardServlet.java:224)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.equinox.http.servlet.internal.HttpServiceRuntimeImpl$LegacyServlet.service(HttpServiceRuntimeImpl.java:1447)
+	at org.eclipse.equinox.http.servlet.internal.registration.EndpointRegistration.service(EndpointRegistration.java:159)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ResponseStateHandler.processRequest(ResponseStateHandler.java:67)
+	at org.eclipse.equinox.http.servlet.internal.context.DispatchTargets.doDispatch(DispatchTargets.java:117)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.dispatch(ProxyServlet.java:147)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.preprocess(ProxyServlet.java:115)
+	at org.eclipse.equinox.http.servlet.internal.servlet.ProxyServlet.service(ProxyServlet.java:104)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.equinox.http.jetty.internal.HttpServerManager$InternalHttpServiceServlet.service(HttpServerManager.java:306)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:760)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:547)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1607)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1297)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:485)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1577)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1212)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:500)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:547)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:270)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:117)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:388)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.FileNotFoundException: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\developer\repos\peripheral_examples\series1\adc\adc_single_interrupt\SimplicityStudio\BRD4104A_EFR32BG13P_adc_single_interrupt.slsproj (The system cannot find the path specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at org.eclipse.emf.ecore.resource.impl.FileURIHandlerImpl.createInputStream(FileURIHandlerImpl.java:99)
+	at org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl.createInputStream(ExtensibleURIConverterImpl.java:360)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1314)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 46 more
+
+!ENTRY com.silabs.ss.framework.project.core 4 0 2021-11-13 00:12:31.389
+!MESSAGE Module file not found: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\developer\sdks\gecko_sdk_suite\v3.2\.studio\.\modules\LibraryModules\Micrium\uCos3Client.slsproj
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-13 00:12:31.627
+!MESSAGE unknown option com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.flags on GNU ARM Assembler
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-13 00:12:31.635
+!MESSAGE unknown option com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.flags on GNU ARM Assembler
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-13 00:12:31.646
+!MESSAGE unknown option com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.flags on GNU ARM Assembler
+
+!ENTRY com.silabs.ss.framework.ide.project.core.cpp 2 0 2021-11-13 00:12:31.652
+!MESSAGE unknown option com.silabs.ide.si32.gcc.cdt.managedbuild.tool.gnu.assembler.flags on GNU ARM Assembler
+
+!ENTRY com.silabs.ss.framework.ide.project.ui 4 0 2021-11-13 00:12:31.712
+!MESSAGE initial resource readme.txt does not exist
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.api.project.ui.util.SLSProjectHandlerEngine.getInitialResource(SLSProjectHandlerEngine.java:467)
+	at com.silabs.ss.framework.ide.api.project.ui.util.SLSProjectHandlerEngine.revealInProject(SLSProjectHandlerEngine.java:522)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.StudioProjectCreatorV5.lambda$1(StudioProjectCreatorV5.java:235)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3963)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3590)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.block(ModalContext.java:166)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY com.silabs.ss.framework.ide.project.ui 4 0 2021-11-13 00:12:31.713
+!MESSAGE initial resource readme.txt does not exist
+!STACK 0
+java.lang.Exception
+	at com.silabs.java.utils.ExceptionUtils.newMinimalStackException(ExceptionUtils.java:29)
+	at com.silabs.ss.framework.ide.api.project.ui.util.SLSProjectHandlerEngine.getInitialResource(SLSProjectHandlerEngine.java:467)
+	at com.silabs.ss.framework.ide.api.project.ui.util.SLSProjectHandlerEngine.openInitialResource(SLSProjectHandlerEngine.java:405)
+	at com.silabs.ss.framework.ide.api.project.ui.v5.StudioProjectCreatorV5.lambda$1(StudioProjectCreatorV5.java:236)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3963)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3590)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.block(ModalContext.java:166)
+	at ... extra clipped....(Unknown Source)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-13 00:12:32.583
+!MESSAGE Indexed 'BRD4104A_EFR32BG13P_adc_single_interrupt' (6 sources, 106 headers) in 0.844 sec: 4,410 declarations; 12,214 references; 0 unresolved inclusions; 25 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.silabs.ss.framework.project.core 4 0 2021-11-13 00:22:53.677
+!MESSAGE no content for project model in Empty Project Template [projectTemplate.emptyProjectTemplate]
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-13 00:22:53.828
+!MESSAGE Indexed 'emptyProject' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.608
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 19ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.624
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 13ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.704
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 56ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.760
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 23ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.789
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 26ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.819
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 26ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.844
+!MESSAGE Heuristic autoselection repeated 1 times. Duration: 23ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.918
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 63ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:09.970
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 48ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:10.026
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 46ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:10.222
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 45ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:11.840
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 52ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:11.892
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 47ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:11.944
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 47ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:12.112
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 67ms
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-11-13 00:25:14.114
+!MESSAGE Indexed 'empty' (26 sources, 135 headers) in 1.96 sec: 6,522 declarations; 16,621 references; 0 unresolved inclusions; 138 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:31.012
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 66ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:35.951
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 92ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.040
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 86ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.203
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 121ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.233
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 132ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.324
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 81ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.412
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 84ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:36.575
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 112ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:37.047
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 145ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:37.918
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 74ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:46.653
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 86ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:46.857
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 97ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:46.908
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 77ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:25:47.962
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 78ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:15.712
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 385ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:15.926
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 201ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:16.125
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 174ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:16.440
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 307ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:25.806
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 299ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:27.907
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 360ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:28.285
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 370ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:28.937
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 406ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:29.183
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 629ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:29.721
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 515ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:29.725
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 304ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:30.895
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 628ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:32.209
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 563ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:33.419
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 513ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:38.037
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 315ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:38.594
+!MESSAGE Heuristic autoselection repeated 2 times. Duration: 255ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:39.470
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 500ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 00:26:41.803
+!MESSAGE Heuristic autoselection repeated 3 times. Duration: 443ms
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 01:28:10.635
+!MESSAGE Deleted Shared Daemon File: C:\Users\mules\.uc\cli\mainstudio.running
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 01:28:10.637
+!MESSAGE Deleted Shared Daemon Version File: C:\Users\mules\.uc\cli\mainstudio.running.version
+
+!ENTRY org.eclipse.tcf 4 0 2021-11-13 01:28:11.092
+!MESSAGE Failed to shutdown TCF event dispatch thread
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.lang.Object.wait(Native Method)
+	at java.base/java.lang.Thread.join(Thread.java:1305)
+	at java.base/java.lang.Thread.join(Thread.java:1379)
+	at org.eclipse.tcf.EventQueue.shutdown(EventQueue.java:76)
+	at org.eclipse.tcf.Activator.stop(Activator.java:154)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:899)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:1)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:891)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1029)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:370)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:658)
+	at org.eclipse.osgi.container.Module.stop(Module.java:520)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:1885)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1760)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:275)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:202)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:658)
+	at org.eclipse.osgi.container.Module.stop(Module.java:520)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:207)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:220)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+!SESSION 2021-11-13 13:12:38.145 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-13 13:12:39.971
+!MESSAGE ContentServer started at: 127.0.0.1, 61051
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-13 13:12:39.988
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-13 13:12:49.062
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-13 13:12:52.823
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp

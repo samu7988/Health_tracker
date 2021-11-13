@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.silabs.ss.framework.ide.project.core.cdtMbsProjectType">
+		<item key="importOption" value="LINK"/>
+		<item key="projectTypeId" value="com.silabs.ss.framework.ide.project.ui.emptyProjectWizard"/>
+		<item key="settingImportModeOption" value="LINK_LIBRARIES"/>
+		<list key="fileLocationHistory">
+			<item value="D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker"/>
+			<item value="D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker\ecen5823-assignment8-samu7988"/>
+		</list>
+		<list key="fileLocations">
+			<item value="D:\Courses\IOT\Project Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker"/>
+		</list>
+	</section>
+</section>

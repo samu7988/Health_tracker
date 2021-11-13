@@ -1,0 +1,90 @@
+00:30:04 **** Build of configuration GNU ARM v10.2.1 - Debug for project BRD4104A_EFR32BG13P_adc_single_interrupt ****
+make -j8 all 
+Building file: ../src/main_s1.c
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_adc.c
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_cmu.c
+Invoking: GNU ARM C Compiler
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_core.c
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"src/main_s1.d" -MT"src/main_s1.o" -o "src/main_s1.o" "../src/main_s1.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "src/main_s1.d"
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_system.c
+Invoking: GNU ARM C Compiler
+Invoking: GNU ARM C Compiler
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"emlib/em_adc.d" -MT"emlib/em_adc.o" -o "emlib/em_adc.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_adc.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "emlib/em_adc.d"
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"emlib/em_cmu.d" -MT"emlib/em_cmu.o" -o "emlib/em_cmu.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_cmu.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "emlib/em_cmu.d"
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/GCC/startup_efr32bg13p.S
+Invoking: GNU ARM C Compiler
+Invoking: GNU ARM C Compiler
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"emlib/em_system.d" -MT"emlib/em_system.o" -o "emlib/em_system.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_system.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "emlib/em_system.d"
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"emlib/em_core.d" -MT"emlib/em_core.o" -o "emlib/em_core.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_core.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "emlib/em_core.d"
+Building file: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/system_efr32bg13p.c
+Invoking: GNU ARM Assembler
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" '-DEFR32BG13P632F512GM48=1' -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -x assembler-with-cpp -o "CMSIS/EFR32BG13P/startup_efr32bg13p.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/GCC/startup_efr32bg13p.S"
+Invoking: GNU ARM C Compiler
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -std=c99 '-DEFR32BG13P632F512GM48=1' '-DDEBUG=1' -II:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/repos/hardware/kit/EFR32BG13_BRD4104A/config -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/EFR32BG13_BRD4104A/config" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/CMSIS/Include" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/emlib/inc" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/bsp" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//hardware/kit/common/drivers" -I"I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2//platform/Device/SiliconLabs/EFR32BG13P/Include" -O0 -Wall -mno-sched-prolog -fno-builtin -ffunction-sections -fdata-sections -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -c -fmessage-length=0 -MMD -MP -MF"CMSIS/EFR32BG13P/system_efr32bg13p.d" -MT"CMSIS/EFR32BG13P/system_efr32bg13p.o" -o "CMSIS/EFR32BG13P/system_efr32bg13p.o" "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/system_efr32bg13p.c" && "I:/Software_Install/SiliconLabs/SimplicityStudio/v5/configuration/org.eclipse.osgi/446/0/.cp/scripts/path_fixup.sh" "CMSIS/EFR32BG13P/system_efr32bg13p.d"
+Correcting file src/main_s1.d
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/GCC/startup_efr32bg13p.S
+Correcting file emlib/em_adc.d
+ 
+sed.exe: preserving permissions for `src/sed032580': Permission denied
+Correcting file emlib/em_core.d
+Correcting file emlib/em_system.d
+sed.exe: preserving permissions for `emlib/sed000964': Permission denied
+Correcting file emlib/em_cmu.d
+sed.exe: preserving permissions for `emlib/sed022684': Permission denied
+Finished building: ../src/main_s1.c
+sed.exe: preserving permissions for `emlib/sed018020': Permission denied
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_adc.c
+Correcting file CMSIS/EFR32BG13P/system_efr32bg13p.d
+ 
+sed.exe: preserving permissions for `emlib/sed031308': Permission denied
+ 
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_core.c
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_system.c
+sed.exe: preserving permissions for `CMSIS/EFR32BG13P/sed033992': Permission denied
+ 
+ 
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/emlib/src/em_cmu.c
+Finished building: I:/Software_Install/SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.2/platform/Device/SiliconLabs/EFR32BG13P/Source/system_efr32bg13p.c
+ 
+ 
+Building target: BRD4104A_EFR32BG13P_adc_single_interrupt.axf
+Invoking: GNU ARM C Linker
+arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -T "BRD4104A_EFR32BG13P_adc_single_interrupt.ld" -Xlinker --gc-sections -Xlinker -Map="BRD4104A_EFR32BG13P_adc_single_interrupt.map" -mfpu=fpv4-sp-d16 -mfloat-abi=softfp --specs=nano.specs -o BRD4104A_EFR32BG13P_adc_single_interrupt.axf "./CMSIS/EFR32BG13P/startup_efr32bg13p.o" "./CMSIS/EFR32BG13P/system_efr32bg13p.o" "./emlib/em_adc.o" "./emlib/em_cmu.o" "./emlib/em_core.o" "./emlib/em_system.o" "./src/main_s1.o" -Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group
+Finished building target: BRD4104A_EFR32BG13P_adc_single_interrupt.axf
+ 
+Building hex file: BRD4104A_EFR32BG13P_adc_single_interrupt.hex
+arm-none-eabi-objcopy -O ihex "BRD4104A_EFR32BG13P_adc_single_interrupt.axf" "BRD4104A_EFR32BG13P_adc_single_interrupt.hex"
+ 
+Building bin file: BRD4104A_EFR32BG13P_adc_single_interrupt.bin
+arm-none-eabi-objcopy -O binary "BRD4104A_EFR32BG13P_adc_single_interrupt.axf" "BRD4104A_EFR32BG13P_adc_single_interrupt.bin"
+ 
+Building s37 file: BRD4104A_EFR32BG13P_adc_single_interrupt.s37
+arm-none-eabi-objcopy -O srec "BRD4104A_EFR32BG13P_adc_single_interrupt.axf" "BRD4104A_EFR32BG13P_adc_single_interrupt.s37"
+ 
+Running size tool
+arm-none-eabi-size "BRD4104A_EFR32BG13P_adc_single_interrupt.axf" -A
+BRD4104A_EFR32BG13P_adc_single_interrupt.axf  :
+section            size        addr
+.text              5452           0
+.ARM.exidx            8        5452
+.data               120   536870912
+.bss                 36   536871032
+.heap              3072   536871072
+.stack_dummy       1024   536871072
+.ARM.attributes      46           0
+.comment             77           0
+.debug_line       14056           0
+.debug_info       30267           0
+.debug_abbrev      3528           0
+.debug_aranges     1120           0
+.debug_str        19194           0
+.debug_loc         9596           0
+.debug_ranges       992           0
+.debug_frame       4584           0
+Total             93172
+
+
+ 
+
+00:30:06 Build Finished. 0 errors, 0 warnings. (took 2s.394ms)
+
