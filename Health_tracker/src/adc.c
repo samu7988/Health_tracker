@@ -56,7 +56,7 @@ void ADC_init(){
 
 
     initScan.diff       = 0;            // single ended
-    initScan.reference  = adcRef2V5;    // internal 5V reference
+    initScan.reference  = adcRef5V;    // internal 5V reference
     initScan.resolution = adcRes12Bit;  // 12-bit resolution
     initScan.acqTime    = adcAcqTime4;  // set acquisition time to meet minimum requirement
     initScan.fifoOverwrite = true;      // FIFO overflow overwrites old data
@@ -78,7 +78,7 @@ void ADC_init(){
     NVIC_EnableIRQ(ADC0_IRQn);
 
     //Start with first conversion
-    ADC_Start(ADC0, adcStartSingle);
+//    ADC_Start(ADC0, adcStartSingle);
 
 }
 /*------------------------------------------------------------------------------------------------------------------------------------*/
@@ -105,8 +105,10 @@ void ADC0_IRQHandler(void)
       // Convert data to mV and store into array
      //analog_val = (adc_reading) * (SYSTEM_VOLTAGE)/(ADC_RESOLUTION)
 
-      millivolts = adc_reading * 2500 / 4096;
+      millivolts = adc_reading * 5000 / 4096;
       LOG_INFO("ADC voltage: %u\n\r",millivolts);
+      ADC_Start(ADC0, adcStartSingle);
+
 
     // Start next ADC conversion
     //ADC_Start(ADC0, adcStartSingle);

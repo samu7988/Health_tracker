@@ -44,7 +44,7 @@ void LETIMER0_IRQHandler(void){
       rollover_count++;
 //      set_scheduler_three_second_event();
       gpioLed0Toggle();
-      ADC_Start(ADC0, adcStartSingle);
+//      ADC_Start(ADC0, adcStartSingle);
 
   }
 
