@@ -1147,3 +1147,39 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 19:54:03.116
 !MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:33:41.472
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:33:48.644
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:42:06.829
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:42:14.086
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:46:01.537
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:46:08.372
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:48:56.669
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:49:03.581
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:51:47.505
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:51:54.378
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-15 20:59:19.477
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:59:26.588
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.

@@ -50,7 +50,9 @@
 
 
 
-
+volatile int IBI = 600;
+volatile int BPM = 0;
+volatile bool QS = false;
 
 
 
@@ -123,8 +125,11 @@ SL_WEAK void app_process_action(void)
 //   Notice: This function is not passed or has access to Bluetooth stack events.
 //           We will create/use a scheme that is far more energy efficient in
 //           later assignments.
-
-
+  if(QS == true)
+  {
+      LOG_INFO("BPM %u\n\r",BPM);
+      QS = false;
+  }
 
 }
 /**************************************************************************//**

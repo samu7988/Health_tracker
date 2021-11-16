@@ -28,6 +28,7 @@
 
 volatile uint32_t sample;
 volatile uint32_t millivolts;
+volatile uint32_t adc_reading = 0;
 
 //***********************************************************************************
 // Function implementation
@@ -78,39 +79,7 @@ void ADC_init(){
     NVIC_EnableIRQ(ADC0_IRQn);
 
     //Start with first conversion
-//    ADC_Start(ADC0, adcStartSingle);
+    ADC_Start(ADC0, adcStartSingle);
 
 }
-/*------------------------------------------------------------------------------------------------------------------------------------*/
-/*
-  @brief:ADC interrupt handler
 
- Perform the required function when ADC conversion gets completed
-
- @param:None
- @param:None
-
- @return: None
- */
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-void ADC0_IRQHandler(void)
-{
-
-    uint32_t adc_reading;
-
-
-      // Read data from ADC
-     adc_reading = ADC_DataSingleGet(ADC0);
-
-      // Convert data to mV and store into array
-     //analog_val = (adc_reading) * (SYSTEM_VOLTAGE)/(ADC_RESOLUTION)
-
-      millivolts = adc_reading * 5000 / 4096;
-      LOG_INFO("ADC voltage: %u\n\r",millivolts);
-      ADC_Start(ADC0, adcStartSingle);
-
-
-    // Start next ADC conversion
-    //ADC_Start(ADC0, adcStartSingle);
-
-}

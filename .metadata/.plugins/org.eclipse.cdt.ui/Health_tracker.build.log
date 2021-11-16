@@ -1,6 +1,6 @@
-19:56:28 **** Incremental Build of configuration GNU ARM v10.2.1 - Default for project Health_tracker ****
+20:59:15 **** Incremental Build of configuration GNU ARM v10.2.1 - Default for project Health_tracker ****
 make -j8 all 
 make: Nothing to be done for `all'.
 
-19:56:32 Build Finished. 0 errors, 0 warnings. (took 4s.396ms)
+20:59:19 Build Finished. 0 errors, 0 warnings. (took 3s.819ms)
 
