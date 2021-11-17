@@ -188,11 +188,11 @@ void I2C0_IRQHandler(void){
    status = I2C_Transfer(I2C0);
 
    if(status == i2cTransferDone){
-       NVIC_DisableIRQ(I2C0_IRQn);
+//       NVIC_DisableIRQ(I2C0_IRQn);
        set_scheduler_i2c_event();
    }
    if(status < i2cTransferDone){
-       NVIC_DisableIRQ(I2C0_IRQn);
+//       NVIC_DisableIRQ(I2C0_IRQn);
    }
 
 }

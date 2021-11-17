@@ -32,10 +32,10 @@
 //Different states
 typedef enum{
   STATE_IDLE,  //default state
-  STATE_TEMP_SENSOR_ENABLE, //Temperature sensor is stable, can read it now
-  STATE_TEMP_WRITE_COMPLETE,
-  STATE_TEMP_READ_START, //Start reading temperature
-  STATE_TEMP_READ_COMPLETE, //Temperature reading is complete
+  STATE_ACCELEROMETER_SENSOR_ENABLE, //ACCELEROMETER sensor is stable, can read it now
+  STATE_ACCELEROMETER_WRITE_COMPLETE,
+  STATE_ACCELEROMETER_READ_START, //Start reading ACCELEROMETER
+  STATE_ACCELEROMETER_READ_COMPLETE, //ACCELEROMETER reading is complete
   STATE_ERROR //Error state
 }state_e;
 
@@ -66,7 +66,7 @@ void set_scheduler_three_second_event();
 void set_scheduler_user_requested_timer_expire_event();
 void set_scheduler_button_press_event();
 void set_scheduler_button_release_event();
-void temperature_statemachine(sl_bt_msg_t *evt);
+void accelerometer_statemachine(sl_bt_msg_t *evt);
 void discovery_statemachine(sl_bt_msg_t *evt);
 
 #endif /* SRC_SCHEDULER_H_ */

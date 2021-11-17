@@ -21,7 +21,7 @@
 //                              Macros
 
 //***********************************************************************************
-#define TEMP_SENSOR_ADDRESS (0x40U)
+#define ACCELEROMETER_SENSOR_ADDRESS (0x53U)
 
 
 

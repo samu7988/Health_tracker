@@ -96,9 +96,9 @@ SL_WEAK void app_init(void)
   // Don't call any Bluetooth API functions until after the boot event.
 //  gpioInit();
   Clock_init();
-//  I2C_init();
-  le_timer_init();
-  ADC_init();
+  I2C_init();
+//  le_timer_init();
+//  ADC_init();
 //  displayInit();
 //  create_cb(50);
 //  displayPrintf(DISPLAY_ROW_ASSIGNMENT,"A8");
@@ -125,11 +125,14 @@ SL_WEAK void app_process_action(void)
 //   Notice: This function is not passed or has access to Bluetooth stack events.
 //           We will create/use a scheme that is far more energy efficient in
 //           later assignments.
-  if(QS == true)
-  {
-      LOG_INFO("BPM %u\n\r",BPM);
-      QS = false;
-  }
+//  if(QS == true)
+//  {
+//      LOG_INFO("BPM %u\n\r",BPM);
+//      QS = false;
+//  }
+
+  sl_bt_msg_t *evt = NULL;
+  accelerometer_statemachine(evt);
 
 }
 /**************************************************************************//**
