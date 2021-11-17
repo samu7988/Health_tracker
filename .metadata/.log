@@ -1183,3 +1183,41 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-15 20:59:26.588
 !MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.core 4 0 2021-11-15 21:07:58.948
+!MESSAGE TCF task failed
+!STACK 0
+java.util.concurrent.TimeoutException
+	at org.eclipse.tcf.util.TCFTask.get(TCFTask.java:275)
+	at com.silabs.ss.framework.debugger.internal.api.tcf.core.TCFTaskCallable.call(TCFTaskCallable.java:38)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+!SESSION 2021-11-16 11:50:53.256 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-16 11:50:55.022
+!MESSAGE ContentServer started at: 127.0.0.1, 49175
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-16 11:50:55.034
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-11-16 11:50:55.489
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-16 11:51:07.519
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 12:06:29.487
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 19:32:39.311
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 19:44:49.020
+!MESSAGE Invalid discovery key: null
