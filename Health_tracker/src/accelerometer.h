@@ -51,8 +51,13 @@
 #define ACCEL_REG_FIFO_STATUS      (0x39)
 
 #define MEASUREMENT_MODE             (0x08)
+#define ENABLE_FREE_FALL_INT          (0x04)
 
 
+//***********************************************************************************
+//                              Enum
+
+//***********************************************************************************
 typedef enum
 {
     RANGE_16G          = 0x3,
@@ -60,6 +65,14 @@ typedef enum
     RANGE_4G           = 0x1,
     RANGE_2G           = 0x0
 } accel_range_t;
+
+
+typedef enum
+{
+    ACCEL_INT2 = 0x01,
+    ACCEL_INT1 = 0x00
+} accel_int_t;
+
 
 //***********************************************************************************
 //                              Global variables

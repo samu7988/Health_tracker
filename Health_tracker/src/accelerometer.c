@@ -30,7 +30,7 @@
 static void set_range(accel_range_t range);
 static void set_free_fall_threshold(float threshold);
 static void set_free_fall_duration(float duration);
-
+static void setup_interrupt(accel_int_t interrupt);
 
 uint8_t read_accelerometer_register(uint8_t reg_address)
 {
@@ -83,7 +83,12 @@ void setup_accelerometer()
   //Free fall detection
   set_free_fall_threshold(0.9);
   set_free_fall_duration(0.1);
+
+  // Select INT 1 for get activities
+  setup_interrupt(ACCEL_INT1);
 }
+
+
 
 void clear_settings()
 {
@@ -180,6 +185,43 @@ static void set_free_fall_duration(float duration)
     write_accelerometer_register(ACCEL_REG_TIME_FF, scaled);
 }
 /*------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+/*
+
+@brief:Function to setup interrupt
+@param: interrupt
+@return: none
+*/
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+
+static void setup_interrupt(accel_int_t interrupt)
+{
+    /* INT_ENABLE Register bit fields,
+     * D7: DATA_READY
+     * D6: SINGLE_TAP
+     * D5: DOUBLE_TAP
+     * D4: Activity
+     * D3: Inactivity
+     * D2: FREE_FALL
+     * D1: Watermark
+     * D0: Overun
+     * Here, only enable FREE_FALL Interrupt */
+    write_accelerometer_register(ACCEL_REG_INT_ENABLE, ENABLE_FREE_FALL_INT);
+
+    if (interrupt == 0)  //selecting INT1 for free fall interupt
+    {
+        write_accelerometer_register(ACCEL_REG_INT_MAP, 0x00);
+    }
+    else
+    {
+        write_accelerometer_register(ACCEL_REG_INT_MAP, 0xFF);
+    }
+}
+
+
+
+
 /*
 @brief: accelerometer initialisation
 @param: none
@@ -190,3 +232,5 @@ void accelerometer_init()
 {
 
 }
+
+
