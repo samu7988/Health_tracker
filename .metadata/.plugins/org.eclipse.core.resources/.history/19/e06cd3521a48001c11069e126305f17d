@@ -1,0 +1,28 @@
+/***********************************************************************************
+* @file accelerometer.h
+ * @brief Contains the function to set to control and setup the accelerometer
+ * @Description : Controls various aspects of accelerometer
+ * @author Sayali Mule
+ * @date November 17, 2021
+ * @Reference:
+ *
+ *****************************************************************************/
+
+#ifndef SRC_ACCELEROMETER_H_
+#define SRC_ACCELEROMETER_H_
+
+//***********************************************************************************
+//                              Include files
+//***********************************************************************************
+
+
+//***********************************************************************************
+//                              Macros
+
+//***********************************************************************************
+#define ACCEL_REG_POWER_CTL        (0x2D)
+
+void setup_accelerometer();
+
+
+#endif /* SRC_ACCELEROMETER_H_ */

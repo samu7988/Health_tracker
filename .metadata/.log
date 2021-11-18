@@ -1302,3 +1302,78 @@ java.net.SocketException: Connection reset
 
 !ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-16 21:42:45.976
 !MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 23:29:32.760
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 23:45:07.443
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-16 23:45:10.455
+!MESSAGE Invalid discovery key: null
+!SESSION 2021-11-17 14:22:56.275 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.5
+java.vendor=Amazon.com Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.silabs.ss.platform.jetty.server 1 0 2021-11-17 14:22:57.990
+!MESSAGE ContentServer started at: 127.0.0.1, 56332
+
+!ENTRY com.silabs.ss.platform.rcp.core 1 0 2021-11-17 14:22:58.007
+!MESSAGE com.silabs.ss.tool.launcher.product found! Writing main studio shared file
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-11-17 14:22:58.487
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.silabs.ss.platform.content.core 4 0 2021-11-17 14:23:10.430
+!MESSAGE Local timestamp file does not exist: I:\Software_Install\SiliconLabs\SimplicityStudio\v5\offline\common\Simplicity_Studio_Terms_of_Use_and_Privacy_Statement.timestamp
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-17 14:34:13.535
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.platform.rcp.core 2 0 2021-11-17 17:54:16.786
+!MESSAGE Invalid discovery key: null
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 18:24:29.984
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 18:24:35.653
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 18:26:39.261
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 18:26:42.512
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 19:39:49.422
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 19:39:56.470
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 19:42:12.839
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 19:42:20.005
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 19:56:56.337
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 19:57:03.359
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 19:59:22.384
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 19:59:29.235
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 1 0 2021-11-17 20:07:06.265
+!MESSAGE Launching SiAgent (Silicon Labs TCF Agent)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 20:07:09.312
+!MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.

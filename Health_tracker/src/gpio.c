@@ -23,31 +23,38 @@
 void gpioInit()
 {
 
-  // Student Edit:
 
-  //LED0
+  //LED0(PF4)
 	GPIO_DriveStrengthSet(LED0_port, gpioDriveStrengthWeakAlternateWeak);
 	GPIO_PinModeSet(LED0_port, LED0_pin, gpioModePushPull, false);
 
-  //LED1
+  //LED1(PF5)
   GPIO_DriveStrengthSet(LED1_port, gpioDriveStrengthWeakAlternateWeak);
   GPIO_PinModeSet(LED1_port, LED1_pin, gpioModePushPull, false);
 
-	//Temp sensor enable
-  GPIO_DriveStrengthSet(gpioPortD,gpioDriveStrengthWeakAlternateWeak);
-  GPIO_PinModeSet(gpioPortD, 15, gpioModePushPull, false);
+  //accelerometer INT1 pin(PC8)
+  GPIO_PinModeSet(ACCELEROMETER_port, ACCELEROMETER_pin, gpioModeInput, 0);
+  GPIO_ExtIntConfig(ACCELEROMETER_port,ACCELEROMETER_pin,ACCELEROMETER_pin,true,false,true); //Rising edge interrupt for INT1
 
 
-  //Initialise PB0 in input mode and set to rising edge interrupt
+  //Initialise PB0 in input mode and set to rising edge interrupt(PF6)
   GPIO_PinModeSet(PB0_port, PB0_pin, gpioModeInputPull, true);
   GPIO_ExtIntConfig (PB0_port, PB0_pin, PB0_pin, true, true, true);
-  NVIC_ClearPendingIRQ(GPIO_EVEN_IRQn);
-  NVIC_EnableIRQ(GPIO_EVEN_IRQn);
 
-  //Initialise PB1 in input mode and set to rising edge interrupt
+
+  //Initialise PB1 in input mode and set to rising edge interrupt(PF7)
   GPIO_PinModeSet(PB1_port, PB1_pin, gpioModeInputPull, true);
   GPIO_ExtIntConfig (PB1_port, PB1_pin, PB1_pin, true, false, true);
+
+
+  //Clear all pending interrupts
+  NVIC_ClearPendingIRQ(GPIO_EVEN_IRQn);
+  NVIC_ClearPendingIRQ(GPIO_ODD_IRQn);
+
+  //Enable the odd and even interrupt
   NVIC_EnableIRQ(GPIO_ODD_IRQn);
+  NVIC_EnableIRQ(GPIO_EVEN_IRQn);
+
 
 
 

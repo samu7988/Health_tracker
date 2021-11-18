@@ -1,0 +1,15 @@
+/********************************************************************
+ * @file Accelerometer.c
+ * @brief 1)setup accelerometer, enable free fall detection
+ * @Description : Enable accelerometer for i2c mode of operation and enable free fall detection
+ *
+ * @author Sayali Mule
+ * @date  November 17, 2021
+ * @Reference:
+ **********************************************************************/
+
+//***********************************************************************************
+//                              Include files
+//***********************************************************************************
+#include "i2c.h"
+

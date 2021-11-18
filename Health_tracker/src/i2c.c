@@ -26,7 +26,7 @@
  //***********************************************************************************
  //                              Macros
  //***********************************************************************************
-#define I2C_INT_ENABLED (1)
+
 
 
 
@@ -41,13 +41,13 @@
 
    I2C_Init_TypeDef i2cInit = I2C_INIT_DEFAULT;
 
-   // Using PC10 (SCL) and PC11 (SDA)
+   // Using PC10 (SCL) and PC11 (SDA)(enabling the pull up and set the modes)
    GPIO_PinModeSet(gpioPortC, 10, gpioModeWiredAndPullUpFilter, 1); //SCL
    GPIO_PinModeSet(gpioPortC, 11, gpioModeWiredAndPullUpFilter, 1); //SDA
 
 
 
-   // Enable pins at location 4 as specified in datasheet
+   // Enable pins at location 4 as specified in datasheet(mux functionality)
     I2C0->ROUTEPEN = I2C_ROUTEPEN_SDAPEN | I2C_ROUTEPEN_SCLPEN;
     I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SDALOC_MASK)) | I2C_ROUTELOC0_SDALOC_LOC16; //see pin mapping in datasheet
     I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SCLLOC_MASK)) | I2C_ROUTELOC0_SCLLOC_LOC14; //see pin mapping in datasheet
@@ -68,7 +68,6 @@ I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t sl
 
 
   I2C_TransferReturn_TypeDef ret;
-  NVIC_EnableIRQ(I2C0_IRQn);
   // Write the measure command.
   transfer.addr = slave_addr << 1;
   transfer.flags = I2C_FLAG_WRITE;
@@ -80,7 +79,16 @@ I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t sl
   //Start I2C transfer(read operation)
   ret = I2C_TransferInit(I2C0, &transfer);
 
+  if(ret < i2cTransferNack){
+      return ret;
+  }
+
+  //I2c blocking mode
+  while(ret == i2cTransferInProgress){
+      ret = I2C_Transfer(I2C0);
+  }
   return ret;
+
 
 }
 
@@ -96,7 +104,7 @@ I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t sla
 
   // Transfer structure
    I2C_TransferReturn_TypeDef result;
-   NVIC_EnableIRQ(I2C0_IRQn);
+
    // Initializing I2C transfer
    transfer.addr          = slave_add<<1;
    transfer.flags         = I2C_FLAG_READ;
@@ -106,7 +114,14 @@ I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t sla
    //Start I2C transfer(read operation)
    result = I2C_TransferInit(I2C0, &transfer);
 
+   if(result < i2cTransferNack){
+       return result;
+   }
 
+   //I2c blocking mode
+   while(result == i2cTransferInProgress){
+       result = I2C_Transfer(I2C0);
+   }
    return result;
 
 }

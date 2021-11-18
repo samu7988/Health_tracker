@@ -43,6 +43,7 @@
 #include "src/lcd.h"
 #include "src/cb.h"
 #include "src/adc.h"
+#include "src/accelerometer.h"
 // Include logging for this file
 #define INCLUDE_LOG_DEBUG 1
 #include "src/log.h"
@@ -94,7 +95,7 @@ SL_WEAK void app_init(void)
   // Put your application 1-time init code here
   // This is called once during start-up.
   // Don't call any Bluetooth API functions until after the boot event.
-//  gpioInit();
+  gpioInit();
   Clock_init();
   I2C_init();
 //  le_timer_init();
@@ -105,7 +106,7 @@ SL_WEAK void app_init(void)
 //
 //  displayPrintf(DISPLAY_ROW_NAME,BLE_DEVICE_TYPE_STRING);
 
-
+  setup_accelerometer();
   if(LOWEST_ENERGY_MODE == EM1){
       sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1);
   }
@@ -132,7 +133,7 @@ SL_WEAK void app_process_action(void)
 //  }
 
   sl_bt_msg_t *evt = NULL;
-  accelerometer_statemachine(evt);
+//  accelerometer_statemachine(evt);
 
 }
 /**************************************************************************//**

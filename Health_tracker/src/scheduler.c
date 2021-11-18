@@ -27,8 +27,8 @@
 //***********************************************************************************
 //                              Global variable
 //***********************************************************************************
-  state_e state = STATE_ACCELEROMETER_SENSOR_ENABLE;
-  I2C_TransferReturn_TypeDef status = 0;
+  state_e state = STATE_ACCELEROMETER_READ_START;
+  I2C_TransferReturn_TypeDef status = i2cTransferDone;
   uint8_t reg_addr[1] = {0x00}; //Device id
   uint8_t read_val[2] = {0};
   event_e current_event = EVENT_DEFAULT;
@@ -162,6 +162,27 @@ void accelerometer_statemachine(sl_bt_msg_t *evt){
 
    switch(state){
 
+     case STATE_ACCEL_INIT:
+     {
+       //If I2c write is completed, start with read
+       if(current_event & EVENT_I2C_DONE)
+       {
+           status = I2C_read(&read_val[0],1, ACCELEROMETER_SENSOR_ADDRESS); //start i2c read
+           state = STATE_ACCEL_ENABLE_POWER_MEAS;
+       }
+       else if(status != i2cTransferInProgress)
+       {
+           status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS); //start i2c write
+       }
+
+     }
+     break;
+
+     case STATE_ACCEL_ENABLE_POWER_MEAS:
+     {
+
+     }
+     break;
      case STATE_ACCELEROMETER_SENSOR_ENABLE:
        {
          status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS);
@@ -199,7 +220,7 @@ void accelerometer_statemachine(sl_bt_msg_t *evt){
               #endif
 
               LOG_INFO("Read value : %x\n\r",read_val[0]);
-             state = STATE_ACCELEROMETER_SENSOR_ENABLE; //return back to first state
+             state = STATE_ACCELEROMETER_READ_START; //return back to first state
          }
      }
        break;

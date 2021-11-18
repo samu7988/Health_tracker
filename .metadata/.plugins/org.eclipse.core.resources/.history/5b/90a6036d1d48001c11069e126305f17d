@@ -1,0 +1,48 @@
+/***********************************************************************************
+* @file accelerometer.h
+ * @brief Contains the function to set to control and setup the accelerometer
+ * @Description : Controls various aspects of accelerometer
+ * @author Sayali Mule
+ * @date November 17, 2021
+ * @Reference:
+ *
+ *****************************************************************************/
+
+#ifndef SRC_ACCELEROMETER_H_
+#define SRC_ACCELEROMETER_H_
+
+//***********************************************************************************
+//                              Include files
+//***********************************************************************************
+
+
+//***********************************************************************************
+//                              Macros
+//***********************************************************************************
+#define ACCEL_DEVID                (0x00)
+#define ACCEL_REG_POWER_CTL        (0x2D)
+
+
+#define MEASUREMENT_MODE          (0x08)
+
+
+typedef enum
+{
+    RANGE_16G          = 0x3,
+    RANGE_8G           = 0x2,
+    RANGE_4G           = 0x1,
+    RANGE_2G           = 0x0
+} adxl345_range_t;
+//***********************************************************************************
+//                              Global variables
+
+//***********************************************************************************
+
+
+//***********************************************************************************
+//                              Function prototype
+
+void setup_accelerometer();
+
+
+#endif /* SRC_ACCELEROMETER_H_ */
