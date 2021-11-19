@@ -1377,3 +1377,48 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 20:07:09.312
 !MESSAGE Unknown context [rc.root.000440226890] is reported in suspended event. Make sure TCF agent has reported contextAdded event first.
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.agent 4 0 2021-11-17 23:31:45.597
+!MESSAGE Lost connection to agent
+!STACK 0
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:186)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:290)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:351)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.tcf.core.ChannelTCP.get(ChannelTCP.java:185)
+	at org.eclipse.tcf.core.StreamChannel.read(StreamChannel.java:84)
+	at org.eclipse.tcf.core.AbstractChannel$1.run(AbstractChannel.java:327)
+
+!ENTRY com.silabs.ss.framework.debugger.tcf.core 4 0 2021-11-17 23:31:45.603
+!MESSAGE TCF task failed
+!STACK 0
+java.io.IOException: Command [C 9656 DebugAdapter disconnect "root.000440226890"] aborted
+	at org.eclipse.tcf.core.AbstractChannel$9.run(AbstractChannel.java:838)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:95)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:186)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:290)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:351)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.tcf.core.ChannelTCP.get(ChannelTCP.java:185)
+	at org.eclipse.tcf.core.StreamChannel.read(StreamChannel.java:84)
+	at org.eclipse.tcf.core.AbstractChannel$1.run(AbstractChannel.java:327)
+
+!ENTRY org.eclipse.cdt.debug.edc 4 0 2021-11-17 23:31:45.606
+!MESSAGE Lost connection to debugger agent "Silicon Labs TCF Agent". It's usually because the agent died abnormally.
+
+The debug session "Silicon Labs ARM MCU: EFR32BG13P632F512GM48" will be terminated.
+!STACK 0
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:186)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:290)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:351)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.tcf.core.ChannelTCP.get(ChannelTCP.java:185)
+	at org.eclipse.tcf.core.StreamChannel.read(StreamChannel.java:84)
+	at org.eclipse.tcf.core.AbstractChannel$1.run(AbstractChannel.java:327)
