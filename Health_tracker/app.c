@@ -132,6 +132,9 @@ SL_WEAK void app_process_action(void)
 //      QS = false;
 //  }
 
+
+
+
   sl_bt_msg_t *evt = NULL;
 //  accelerometer_statemachine(evt);
 

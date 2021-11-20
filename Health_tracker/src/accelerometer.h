@@ -50,8 +50,12 @@
 #define ACCEL_REG_FIFO_CTL         (0x38)
 #define ACCEL_REG_FIFO_STATUS      (0x39)
 
-#define MEASUREMENT_MODE             (0x08)
-#define ENABLE_FREE_FALL_INT          (0x04)
+
+#define ACCEL_GRAVITY_EARTH        9.80665f
+#define WAKEUP_MODE                  (0x00) //0
+#define AUTOSLEEP_MODE               (0x10) //16
+#define MEASUREMENT_MODE             (0x08) //8
+#define ENABLE_FREE_FALL_INT         (0x04)
 
 
 //***********************************************************************************

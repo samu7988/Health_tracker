@@ -18,6 +18,7 @@
 #define INCLUDE_LOG_DEBUG 1
 #include "src/log.h"
 #include "src/adc.h"
+#include "src/accelerometer.h"
 #include "app.h"
 
 //***********************************************************************************
@@ -204,21 +205,22 @@ void GPIO_EVEN_IRQHandler(void)
     CORE_ENTER_CRITICAL();
   // Get and clear all pending GPIO interrupts
   uint32_t interruptMask = GPIO_IntGet();
-
+   gpioLed0Toggle();
   // Check if PB0 was pressed
-  if (GPIO->IF & (1 << PB0_pin))
-  {
-      button_pressed = !button_pressed;
-      if(button_pressed){
-
-          set_scheduler_button_press_event();
-      }
-      else{
-
-          set_scheduler_button_release_event();
-      }
-  }
+//  if (GPIO->IF & (1 << PB0_pin))
+//  {
+//      button_pressed = !button_pressed;
+//      if(button_pressed){
+//
+//          set_scheduler_button_press_event();
+//      }
+//      else{
+//
+//          set_scheduler_button_release_event();
+//      }
+//  }
   GPIO_IntClear(interruptMask);
+  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
   CORE_EXIT_CRITICAL();
 
 }

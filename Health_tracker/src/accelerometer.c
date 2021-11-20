@@ -22,14 +22,15 @@
 //***********************************************************************************
 //                              Global variable
 //***********************************************************************************
+static bool free_fall_event = false;
 
 
  //***********************************************************************************
  //                              Macros
  //***********************************************************************************
 static void set_range(accel_range_t range);
-static void set_free_fall_threshold(float threshold);
-static void set_free_fall_duration(float duration);
+static void set_free_fall_threshold(uint8_t threshold);
+static void set_free_fall_duration(uint8_t duration);
 static void setup_interrupt(accel_int_t interrupt);
 
 uint8_t read_accelerometer_register(uint8_t reg_address)
@@ -74,44 +75,76 @@ void setup_accelerometer()
   //Read the Device ID register
   val = read_accelerometer_register(ACCEL_DEVID);
 
-  //Enable measurement mode
+  //Enable wakeup, autosleep, and measurement mode
+  write_accelerometer_register(ACCEL_REG_POWER_CTL, WAKEUP_MODE);
+  write_accelerometer_register(ACCEL_REG_POWER_CTL, AUTOSLEEP_MODE);
   write_accelerometer_register(ACCEL_REG_POWER_CTL, MEASUREMENT_MODE);
 
   // Clear settings
-  clear_settings();
+//  clear_settings();
+  set_range(RANGE_2G);
+
 
   //Free fall detection
-  set_free_fall_threshold(0.9);
-  set_free_fall_duration(0.1);
+  set_free_fall_threshold(5);
+  set_free_fall_duration(20);
 
   // Select INT 1 for get activities
   setup_interrupt(ACCEL_INT1);
+  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
+
 }
 
+
+//*****************************************************************************
+// Name        : is_fall_detected
+//
+// Description : Function to check if the free fall is detected.
+//
+// Arguments   : None
+//
+// Return      : TRUE if free fall event is occurred, Otherwise FALSE.
+//
+//****************************************************************************/
+bool is_fall_detected(void)
+{
+  if (free_fall_event == true)
+  {
+    free_fall_event = false;
+
+    // Read activities, to clear the events generated
+    read_normalize(ACCEL_GRAVITY_EARTH);
+    read_activities();
+
+    return true;
+  }
+
+  return false;
+}
 
 
 void clear_settings()
 {
   set_range(RANGE_2G);
 
-  write_accelerometer_register(ACCEL_REG_THRESH_TAP, 0x00);
-  write_accelerometer_register(ACCEL_REG_DUR, 0x00);
-  write_accelerometer_register(ACCEL_REG_LATENT, 0x00);
-  write_accelerometer_register(ACCEL_REG_WINDOW, 0x00);
-  write_accelerometer_register(ACCEL_REG_THRESH_ACT, 0x00);
-  write_accelerometer_register(ACCEL_REG_THRESH_INACT, 0x00);
-  write_accelerometer_register(ACCEL_REG_TIME_INACT, 0x00);
-  write_accelerometer_register(ACCEL_REG_THRESH_FF, 0x00);
-  write_accelerometer_register(ACCEL_REG_TIME_FF, 0x00);
+//  write_accelerometer_register(ACCEL_REG_THRESH_TAP, 0x00);
+//  write_accelerometer_register(ACCEL_REG_DUR, 0x00);
+//  write_accelerometer_register(ACCEL_REG_LATENT, 0x00);
+//  write_accelerometer_register(ACCEL_REG_WINDOW, 0x00);
+//  write_accelerometer_register(ACCEL_REG_THRESH_ACT, 0x00);
+//  write_accelerometer_register(ACCEL_REG_THRESH_INACT, 0x00);
+//  write_accelerometer_register(ACCEL_REG_TIME_INACT, 0x00);
+//  write_accelerometer_register(ACCEL_REG_THRESH_FF, 0x00);
+//  write_accelerometer_register(ACCEL_REG_TIME_FF, 0x00);
 
-  uint8_t value;
-  value = read_accelerometer_register(ACCEL_REG_ACT_INACT_CTL);
-  value &= 0x88;
-  write_accelerometer_register(ACCEL_REG_ACT_INACT_CTL, value);
-
-  value = read_accelerometer_register(ACCEL_REG_TAP_AXES);
-  value &= 0xF8;
-  write_accelerometer_register(ACCEL_REG_TAP_AXES, value);
+//  uint8_t value;
+//  value = read_accelerometer_register(ACCEL_REG_ACT_INACT_CTL);
+//  value &= 0x88;
+//  write_accelerometer_register(ACCEL_REG_ACT_INACT_CTL, value);
+//
+//  value = read_accelerometer_register(ACCEL_REG_TAP_AXES);
+//  value &= 0xF8;
+//  write_accelerometer_register(ACCEL_REG_TAP_AXES, value);
 }
 //*****************************************************************************
 /*
@@ -140,7 +173,7 @@ static void set_range(accel_range_t range)
 
 //*****************************************************************************
 /*
-@brief:Constrain the values.
+@brief:Constrain the values between a and b
 @param:x, a, b
 @return: Constrained value
 
@@ -148,7 +181,7 @@ static void set_range(accel_range_t range)
 //
 //****************************************************************************/
 
-static uint8_t constrain(float x, uint8_t a, uint8_t b)
+static uint8_t constrain(uint8_t x, uint8_t a, uint8_t b)
 {
     if ((x>=a) && (x<=b)) return (uint8_t)x;
     if (x<a) return a;
@@ -164,9 +197,9 @@ Note : Threshhold - 65.5mg / LSB
 */
 //
 //****************************************************************************/
-static void set_free_fall_threshold(float threshold)
+static void set_free_fall_threshold(uint8_t threshold)
 {
-    uint8_t scaled = constrain(threshold / 0.0625f, 0, 255);
+    uint8_t scaled = constrain(threshold, 0, 255);
     write_accelerometer_register(ACCEL_REG_THRESH_FF, scaled);
 }
 
@@ -179,12 +212,11 @@ static void set_free_fall_threshold(float threshold)
 */
 //
 //****************************************************************************/
-static void set_free_fall_duration(float duration)
+static void set_free_fall_duration(uint8_t duration)
 {
-    uint8_t scaled = constrain(duration / 0.005f, 0, 255);
+    uint8_t scaled = constrain(duration, 0, 255);
     write_accelerometer_register(ACCEL_REG_TIME_FF, scaled);
 }
-/*------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*
@@ -218,19 +250,4 @@ static void setup_interrupt(accel_int_t interrupt)
         write_accelerometer_register(ACCEL_REG_INT_MAP, 0xFF);
     }
 }
-
-
-
-
-/*
-@brief: accelerometer initialisation
-@param: none
-@return: none
-*/
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-void accelerometer_init()
-{
-
-}
-
 
