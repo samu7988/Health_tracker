@@ -148,6 +148,8 @@ void GPIO_EVEN_IRQHandler(void)
 
 void GPIO_ODD_IRQHandler(void)
 {
+  CORE_DECLARE_IRQ_STATE;
+  CORE_ENTER_CRITICAL();
   // Get and clear all pending GPIO interrupts
   uint32_t interruptMask = GPIO_IntGet();
 
@@ -160,6 +162,6 @@ void GPIO_ODD_IRQHandler(void)
       GPIO_IntClear(interruptMask);
 
   }
-
+  CORE_EXIT_CRITICAL();
 
 }
