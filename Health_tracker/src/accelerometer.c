@@ -76,8 +76,7 @@ void setup_accelerometer()
   val = read_accelerometer_register(ACCEL_DEVID);
 
   //Enable wakeup, autosleep, and measurement mode
-  write_accelerometer_register(ACCEL_REG_POWER_CTL, WAKEUP_MODE);
-  write_accelerometer_register(ACCEL_REG_POWER_CTL, AUTOSLEEP_MODE);
+
   write_accelerometer_register(ACCEL_REG_POWER_CTL, MEASUREMENT_MODE);
 
   // Clear settings
@@ -91,61 +90,15 @@ void setup_accelerometer()
 
   // Select INT 1 for get activities
   setup_interrupt(ACCEL_INT1);
-  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
+    uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
+
 
 }
 
 
-//*****************************************************************************
-// Name        : is_fall_detected
-//
-// Description : Function to check if the free fall is detected.
-//
-// Arguments   : None
-//
-// Return      : TRUE if free fall event is occurred, Otherwise FALSE.
-//
-//****************************************************************************/
-bool is_fall_detected(void)
-{
-  if (free_fall_event == true)
-  {
-    free_fall_event = false;
-
-    // Read activities, to clear the events generated
-    read_normalize(ACCEL_GRAVITY_EARTH);
-    read_activities();
-
-    return true;
-  }
-
-  return false;
-}
 
 
-void clear_settings()
-{
-  set_range(RANGE_2G);
 
-//  write_accelerometer_register(ACCEL_REG_THRESH_TAP, 0x00);
-//  write_accelerometer_register(ACCEL_REG_DUR, 0x00);
-//  write_accelerometer_register(ACCEL_REG_LATENT, 0x00);
-//  write_accelerometer_register(ACCEL_REG_WINDOW, 0x00);
-//  write_accelerometer_register(ACCEL_REG_THRESH_ACT, 0x00);
-//  write_accelerometer_register(ACCEL_REG_THRESH_INACT, 0x00);
-//  write_accelerometer_register(ACCEL_REG_TIME_INACT, 0x00);
-//  write_accelerometer_register(ACCEL_REG_THRESH_FF, 0x00);
-//  write_accelerometer_register(ACCEL_REG_TIME_FF, 0x00);
-
-//  uint8_t value;
-//  value = read_accelerometer_register(ACCEL_REG_ACT_INACT_CTL);
-//  value &= 0x88;
-//  write_accelerometer_register(ACCEL_REG_ACT_INACT_CTL, value);
-//
-//  value = read_accelerometer_register(ACCEL_REG_TAP_AXES);
-//  value &= 0xF8;
-//  write_accelerometer_register(ACCEL_REG_TAP_AXES, value);
-}
 //*****************************************************************************
 /*
 @brief:Set data range

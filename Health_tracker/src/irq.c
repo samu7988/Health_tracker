@@ -128,7 +128,7 @@ void GPIO_EVEN_IRQHandler(void)
 
   GPIO_IntClear(interruptMask);
   set_scheduler_free_fall_event();
-  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
+//  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
   CORE_EXIT_CRITICAL();
 
 }
