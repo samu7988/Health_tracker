@@ -57,7 +57,7 @@ void le_timer_init(){
   LETIMER_IntEnable(LETIMER0, LETIMER_IF_UF);
 
    // Compare on wake-up interval count
-  LETIMER_Enable(LETIMER0,true);
+  LETIMER_Enable(LETIMER0,false);
 
 
 

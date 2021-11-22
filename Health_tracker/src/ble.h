@@ -57,10 +57,11 @@ extern uint8_t temp_measure_char[2] ;
 //Enum for setting type of event i.e
 typedef enum{
   EVENT_I2C_DONE = 1, //Set when i2c write or i2c read operation is completed
-  EVENT_TIMER_THREE_SEC_EXPIRE = 2, //event is set every 3 seconds(read temp sensor)
-  EVENT_TIMER_USER_REQUESTED_EXPIRE = 4, //event is set when user requested time period is expired
-  EVENT_BUTTON_PRESSED = 8,
-  EVENT_BUTTON_RELEASE = 16,
+  EVENT_TIMER_TWO_MSEC_EXPIRE = 2, //event is set every 3 seconds(read temp sensor)
+  EVENT_FREE_FALL = 4,
+  EVENT_TIMER_USER_REQUESTED_EXPIRE = 8, //event is set when user requested time period is expired
+  EVENT_BUTTON_PRESSED = 16,
+  EVENT_BUTTON_RELEASE = 24,
   EVENT_DEFAULT = 0
 }event_e;
 //***********************************************************************************

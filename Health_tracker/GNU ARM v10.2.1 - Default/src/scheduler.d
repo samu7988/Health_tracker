@@ -123,6 +123,8 @@ src/scheduler.o: ../src/scheduler.c \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_i2c.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/i2c.h \
  ../src/lcd.h ../src/cb.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/irq.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/accelerometer.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/log.h
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\toolchain\inc/sl_gcc_preinclude.h:
 ../src/scheduler.h:
@@ -250,4 +252,6 @@ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/i2c.h:
 ../src/lcd.h:
 ../src/cb.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/irq.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/accelerometer.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/log.h:

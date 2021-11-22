@@ -28,4 +28,5 @@
 extern int rollover_count;
 extern int milli_count;
 extern uint32_t enable_timer_count;
+extern volatile uint32_t Signal; //declare
 #endif /* SRC_IRQ_H_ */
