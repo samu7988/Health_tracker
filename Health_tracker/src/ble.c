@@ -113,9 +113,6 @@ void handle_ble_event(sl_bt_msg_t *evt){
   ble_data_struct_t* ble_common_data = get_ble_data();
   sl_status_t status = 0;
 
-//  if(SL_BT_MSG_ID(evt->header) != sl_bt_evt_system_soft_timer_id)
-//    LOG_INFO("Event is %x\n\r",SL_BT_MSG_ID(evt->header));
-
   switch (SL_BT_MSG_ID(evt->header)) {
 
 /*#####################################################################################
@@ -161,43 +158,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
           LOG_INFO("SERVER:sl_bt_evt_system_boot_id fail %d\n\r",status);
       }
       #endif
-      #else
-      status |= sl_bt_system_get_identity_address(&ble_common_data->myAddress, &ble_common_data->type);
-      //Print client address
-      displayPrintf(DISPLAY_ROW_BTADDR, "%x:%x:%x:%x:%x:%x",ble_common_data->myAddress.addr[0],ble_common_data->myAddress.addr[1],
-                    ble_common_data->myAddress.addr[2], ble_common_data->myAddress.addr[3],
-                    ble_common_data->myAddress.addr[4], ble_common_data->myAddress.addr[5]);
-
-      //Set Passive scanning
-      status |= sl_bt_scanner_set_mode(sl_bt_gap_1m_phy, 0); //Passive scanning
-
-      // Set scan interval and scan window
-      status |= sl_bt_scanner_set_timing(sl_bt_gap_1m_phy, SCAN_INTERVAL, SCAN_WINDOW);
-
-      // Set the default connection parameters for subsequent connections
-      status |= sl_bt_connection_set_default_parameters(CONN_MIN,CONN_MAX,0,CONN_TIMEOUT,0,0xFFFF);
-
-      // Start scanning - looking for thermometer devices
-      status |= sl_bt_scanner_start(sl_bt_gap_1m_phy, sl_bt_scanner_discover_generic);
-
-      //Print harcoded server address
-      displayPrintf(DISPLAY_ROW_BTADDR2, "%x:%x:%x:%x:%x:%x",server_address[0][0],server_address[0][1],
-                    server_address[0][2], server_address[0][3],
-                    server_address[0][4], server_address[0][5]);
-
-      displayPrintf(DISPLAY_ROW_CONNECTION,"Discovering");
-
-
-      #if ENABLE_LOGGING
-      if(status == SL_STATUS_OK){
-          LOG_INFO("CLIENT:sl_bt_evt_system_boot_id success %d\n\r",status);
-      }
-      else{
-          LOG_INFO("CLIENT:sl_bt_evt_system_boot_id fail %d\n\r",status);
-      }
-      #endif//ENABLE_LOGGING
-
-      #endif// DEVICE_IS_BLE_SERVER
+      #endif
       break;
 
 
@@ -223,11 +184,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
           LOG_INFO("SERVER:sl_bt_evt_connection_opened_id fail %d\n\r",status);
       }
       #endif
-      #else
-      //Handle open connection for client
-      displayPrintf(DISPLAY_ROW_CONNECTION,"Connected");
-
-      #endif //DEVICE_IS_BLE_SERVER
+      #endif
       break;
 
     /*********************************************
@@ -256,24 +213,9 @@ void handle_ble_event(sl_bt_msg_t *evt){
       #endif
       displayPrintf(DISPLAY_ROW_CONNECTION,"Advertising");
       displayPrintf(DISPLAY_ROW_TEMPVALUE,"");
-      #else
-      // This event is generated when a connection is dropped
-      // remove connection from active connections
-      // start scanning again to find new devices
-      status |= sl_bt_scanner_start(sl_bt_gap_1m_phy, sl_bt_scanner_discover_generic);
-      displayPrintf(DISPLAY_ROW_CONNECTION,"Discovering");
 
-      #if ENABLE_LOGGING
-      if(status == SL_STATUS_OK){
-          LOG_INFO("CLIENT:sl_bt_evt_connection_closed_id success %d\n\r",status);
-      }
-      else{
-          LOG_INFO("CLIENT:sl_bt_evt_connection_closed_id fail %d\n\r",status);
-      }
-      #endif //ENABLE_LOGGING
-      #endif//DEVICE_BLE_SERVER
       break;
-
+      #endif
     /*#####################################################################################
          EVENTS FOR SERVER
     ######################################################################################*/
@@ -285,12 +227,14 @@ void handle_ble_event(sl_bt_msg_t *evt){
     case sl_bt_evt_gatt_server_characteristic_status_id:
 
 
-      //If temperature indications are enabled
+      //if Client configuration for temperature characteristics are changed(either temperature indications enabled/disabled)
+      //if temperature indications are enabled, make the temperature_char = True and turn on LED0
+      //elif temperature indications are disabled, make the temperature_char = False and turn off LED0
       if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_temperature_measurement &&
           evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_client_config)
       {
 
-            //Indications are enabled
+            //If Indications are enabled
             if(evt->data.evt_gatt_server_characteristic_status.client_config_flags ==  sl_bt_gatt_server_indication){
 
             temperature_char = 1; //Enable indication
@@ -312,17 +256,18 @@ void handle_ble_event(sl_bt_msg_t *evt){
             gpioLed0SetOff();
           }
       }
-      //if button indications are enabled
+      //if Client configuration for button characteristics are changed(either button indications enabled/disabled)
+      //if button indications are enabled, make the button_char = True and turn on LED1
+      //elif button indicatiosn are disabled, make the button_char = False and turn off LED1
       else if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_button_state &&
           evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_client_config)
       {
-//          status |= sl_bt_gatt_server_write_attribute_value(gattdb_button_state,0, sizeof(int), 1);
 
           #if ENABLE_LOGGING
           LOG_INFO("BUTTON Characteristics changed %d\n\r",0);
           #endif
 
-          //Indications are enabled
+          //If button indications are enabled
           if(evt->data.evt_gatt_server_characteristic_status.client_config_flags ==  sl_bt_gatt_server_indication){
 
               //Store handle for future reference
@@ -342,7 +287,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
           #endif
 
         }
-        else
+        else //button indications are disabled
         {
               //Indications are disabled
               //Turn off the LED1
@@ -350,15 +295,15 @@ void handle_ble_event(sl_bt_msg_t *evt){
               gpioLed1SetOff();
         }
       }
-
+      //Acknowledgement for sent data to client has been received.
       else if(evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_confirmation){
-//          #if ENABLE_LOGGING
-//          LOG_INFO("Confirmation for indications has been received %d\n\r",0);
-//          #endif
+
           inflight_indication = 0; //turn off inflight indication when acknowledgement received from client
       }
-      else{
+      else
+      {
           temperature_char = 0;
+          button_char = 0;
           #if ENABLE_LOGGING
           LOG_INFO("Indications are disabled %d\n\r",0);
           #endif
@@ -506,9 +451,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
 
 
         #if ENABLE_LOGGING
-//        if(evt->data.evt_connection_parameters.security_mode == connection_mode1_level4){
-//            LOG_INFO("Authenticated Secure Connections pairing with encryption:%d\n\r",0);
-//        }
+
 
         LOG_INFO("Connection Parameters: interval: %f Latency: %f Timeout: %f\n\r",
             ((float)evt->data.evt_connection_parameters.interval * 1.25),
@@ -524,13 +467,17 @@ void handle_ble_event(sl_bt_msg_t *evt){
     case sl_bt_evt_system_external_signal_id:
 
       ble_common_data->event = sl_bt_evt_system_external_signal_id;
+      //if PB0 is pressed:
+      //and If Bonding has not happened, bonding process will be confirmed
+      //else if bonding has happened and button indications are enabled, enqueue into CB or send indications directly
+      //else if bonding has happened and butoon indications are disabled, then only update the local gatt database.
       if(evt->data.evt_system_external_signal.extsignals & EVENT_BUTTON_PRESSED)
       {
 
          // ble_common_data->button_pressed = 1;//Indicates that PB0 is pressed
           displayPrintf(DISPLAY_ROW_9, "Button Pressed");
 
-          //If bonding has not happened yet then call passkeyconfirm function once user presses PB0
+          //If bonding has not happened yet then call passkey confirm function once user presses PB0
           if(ble_common_data->bonding == 0)
           {
             //Accept the pass key confirm value on server to make sure about encryption
@@ -602,10 +549,6 @@ void handle_ble_event(sl_bt_msg_t *evt){
                   }
               }
 
-
-
-
-
           }
           //if indications are not enabled and bonding is successfull
           else if(ble_common_data->bonding == 1 && button_char == 0)
@@ -630,214 +573,12 @@ void handle_ble_event(sl_bt_msg_t *evt){
           }
           #endif
       }
-      else if(evt->data.evt_system_external_signal.extsignals & EVENT_BUTTON_RELEASE)
-      {
-          displayPrintf(DISPLAY_ROW_9, "Button Released");
-
-
-          //send button_state value to client if indications are enabled and bonding is complete
-          if(ble_common_data->bonding == 1 && button_char == 1)
-          {
-              uint8_t button_pressed = 0;
-              status |= sl_bt_gatt_server_write_attribute_value(gattdb_button_state,0, sizeof(button_pressed), &button_pressed); //Update local gatt database
-
-
-              if(inflight_indication == 0 && is_empty(cbuffer) == CB_EMPTY)
-              {
-                uint8_t button_pressed = 0;
-                #if ENABLE_LOGGING
-                LOG_INFO("##No inflight indication so send the button press indication directly%d\n\r",0);
-                #endif
-
-                status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_button_state, sizeof(button_pressed), &button_pressed);
-                inflight_indication = 1;
-
-              }
-              else if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
-              {
-                  indication_t dqued_val;
-                  cb_dequeue(cbuffer, &dqued_val);
-                  if(dqued_val.charHandle == gattdb_temperature_measurement){
-                      #if ENABLE_LOGGING
-                      LOG_INFO("==soft timer event: dequeued temperature event %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
-                      #endif
-                  }
-                  else if(dqued_val.charHandle == gattdb_button_state){
-                      #if ENABLE_LOGGING
-                      LOG_INFO("==soft timer event: dequeued button event %d\n\r",dqued_val.buffer[0]);
-                      #endif
-                  }
-                  status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
-                  inflight_indication = 1;
-              }
-              else {
-                  #if ENABLE_LOGGING
-                  LOG_INFO("**Indication in flight or cb not empty, Enqueue button release event into CB %d\n\r",0);
-                  #endif
-                  indication_t temp;
-                  temp.charHandle = gattdb_button_state;
-                  temp.bufferLength = 1;
-                  temp.buffer[0] = 0x00;
-                  if(cb_enqueue(cbuffer, &temp) == CB_ERROR)
-                  {
-                      #if ENABLE_LOGGING
-                      LOG_INFO("Error while enqueueing in button release");
-                      #endif
-                  }
-                  else{
-                      #if ENABLE_LOGGING
-                      LOG_INFO("enqueued in button release %d\n\r",cb_get_length(cbuffer));
-                      #endif
-                  }
-              }
-
-
-              #if ENABLE_LOGGING
-              if(status == SL_STATUS_OK){
-
-                  LOG_INFO("Sending button release indication success %u\n\r",status);
-              }
-              else{
-                  LOG_INFO("Sending button release indication fail %u\n\r",status);
-              }
-              #endif
-
-          }
-          //if indications are not enabled and bonding is successfull
-          else if(ble_common_data->bonding == 1 && button_char == 0)
-          {
-              uint8_t button_pressed = 0;
-              status |= sl_bt_gatt_server_write_attribute_value(gattdb_button_state,0, sizeof(button_pressed), &button_pressed); //Update local gatt database
-          }
-
-
-        #if ENABLE_LOGGING
-        if(status == SL_STATUS_OK)
-        {
-            LOG_INFO("Release button  %d\n\r",0);
-            LOG_INFO("sl_bt_evt_system_external_signal_id success %u\n\r",status);
-        }
-        else
-        {
-            LOG_INFO("sl_bt_evt_system_external_signal_id fail %u\n\r",status);
-        }
-        #endif
-
-      }
 
 
       break;
   #endif//DEVICE_IS_BLE_SERVER
 
-  /*#####################################################################################
-       EVENTS FOR CLIENT
-  ######################################################################################*/
-    // This event is generated when an advertisement packet or a scan response
-    // is received from a responder
-    #if DEVICE_IS_BLE_SERVER == 0
 
-  /*********************************************
-   *      SCAN REPORT EVENT(CLIENT)
-   ***********************************************/
-    // This event is generated when an advertisement packet or a scan response
-    // is received from a server
-    case sl_bt_evt_scanner_scan_report_id:
-
-
-
-      //Check if the address stored(hardcoded) matches with the address in the adverstisement packet
-      if((server_address[0][0] == evt->data.evt_scanner_scan_report.address.addr[0]) &&
-                           (server_address[0][1] == evt->data.evt_scanner_scan_report.address.addr[1]) &&
-                           (server_address[0][2] == evt->data.evt_scanner_scan_report.address.addr[2]) &&
-                           (server_address[0][3] == evt->data.evt_scanner_scan_report.address.addr[3]) &&
-                           (server_address[0][4] == evt->data.evt_scanner_scan_report.address.addr[4]) &&
-                           (server_address[0][5] == evt->data.evt_scanner_scan_report.address.addr[5]))
-        {
-            //Connect after scan response
-          status |= sl_bt_scanner_stop();
-          status |= sl_bt_connection_open(evt->data.evt_scanner_scan_report.address, evt->data.evt_scanner_scan_report.address_type,sl_bt_gap_1m_phy,&ble_common_data->scan_connection_handle);
-        }
-
-      displayPrintf(DISPLAY_ROW_CONNECTION,"Discovering");
-
-      #if ENABLE_LOGGING
-      if(status == SL_STATUS_OK){
-          LOG_INFO("sl_bt_evt_scanner_scan_report_id success %d\n\r",status);
-      }
-      else{
-          LOG_INFO("sl_bt_evt_scanner_scan_report_id fail %d\n\r",status);
-      }
-      #endif//ENABLE LOGGING
-      break;
-
-    /*********************************************
-     *      GATT SERVICE EVENT(CLIENT)
-     ***********************************************/
-    // This event is generated when a new service is discovered
-    case sl_bt_evt_gatt_service_id:
-      //When thermometer service is discovered by client
-      if(!(memcmp(evt->data.evt_gatt_service.uuid.data,thermo_service,2))){
-
-          // Save service handle for future reference
-          ble_common_data->thermometer_service_handle = evt->data.evt_gatt_service.service;
-
-          #if ENABLE_LOGGING
-          LOG_INFO("sl_bt_evt_gatt_service_id success %d\n\r",0);
-          #endif
-
-      }
-      else{
-        #if ENABLE_LOGGING
-        LOG_INFO("sl_bt_evt_gatt_service_id fail %d\n\r",1);
-        #endif
-      }
-
-
-      break;
-
-    /*********************************************
-     *      GATT CHARACTERISTICS EVENT (CLIENT)
-     ***********************************************/
-    // This event is generated when a new characteristic is discovered
-    case sl_bt_evt_gatt_characteristic_id:
-      if(!(memcmp(evt->data.evt_gatt_characteristic.uuid.data,temp_measure_char,2)))
-      {
-
-          // Save characteristic handle for future reference
-          ble_common_data->thermometer_characteristic_handle= evt->data.evt_gatt_characteristic.characteristic;
-
-          #if ENABLE_LOGGING
-          LOG_INFO("sl_bt_evt_gatt_characteristic_id success %d\n\r",0);
-          #endif
-
-      }
-      else{
-        #if ENABLE_LOGGING
-        LOG_INFO("sl_bt_evt_gatt_characteristic_id fail %d\n\r",1);
-        #endif
-      }
-      break;
-
-    /*********************************************
-     *      GATT CHARACTERISTICS VALUE(TEMP VALUE) EVENT(CLIENT)
-     ***********************************************/
-    // This event is generated when a characteristic value was received e.g. an indication
-    case sl_bt_evt_gatt_characteristic_value_id:
-      //Handled in the discovery state machine
-      displayPrintf(DISPLAY_ROW_CONNECTION, "Handling Indications");
-
-      break;
-
-    /*********************************************
-     *      GATT PROCEDURE COMPLETE EVENT(CLIENT)
-     ***********************************************/
-    // This event is generated for various procedure completions, e.g. when a
-    // write procedure is completed, or service discovery is completed
-    case sl_bt_evt_gatt_procedure_completed_id:
-      //This is handled in discovery state machine
-      break;
-
-      #endif //DEVICE_BLE_SERVER
 
   // more case statements to handle other BT events
   } // end - switch

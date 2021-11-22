@@ -23,12 +23,19 @@
 
 #define	LED0_port  (gpioPortF) // change to correct ports and pins
 #define LED0_pin   (4)
+
 #define LED1_port  (gpioPortF)
 #define LED1_pin   (5)
+
 #define PB0_port   (gpioPortF)
 #define PB0_pin    (6)
+
 #define PB1_port   (gpioPortF)
 #define PB1_pin    (7)
+
+#define ACCEL_INT1_PORT (gpioPortC)
+#define ACCEL_INT1_PIN  (8)
+
 
 #define ACCELEROMETER_port (gpioPortC)
 #define ACCELEROMETER_pin  (8)

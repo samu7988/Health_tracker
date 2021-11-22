@@ -72,8 +72,9 @@ void set_scheduler_i2c_event();
 void set_scheduler_two_ms_event();
 void set_scheduler_user_requested_timer_expire_event();
 void set_scheduler_button_press_event();
+void set_scheduler_pb1_button_press_event();
 void set_scheduler_button_release_event();
 void accelerometer_statemachine(sl_bt_msg_t *evt);
-void discovery_statemachine(sl_bt_msg_t *evt);
+void set_scheduler_free_fall_event();
 
 #endif /* SRC_SCHEDULER_H_ */

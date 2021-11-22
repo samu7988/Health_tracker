@@ -113,24 +113,7 @@ void set_scheduler_two_ms_event(){
 
 }
 
-/*------------------------------------------------------------------------------------------------------------------------------------*/
-/*
-@brief: Sets the global event variable to EVENT_TIMER_POWER_ON
-@param: none
-@return: none
-*/
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-void set_scheduler_user_requested_timer_expire_event(){
 
-  CORE_DECLARE_IRQ_STATE;
-
-   CORE_ENTER_CRITICAL();
-
-   sl_bt_external_signal(EVENT_TIMER_USER_REQUESTED_EXPIRE);
-
-  CORE_EXIT_CRITICAL();
-
-}
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*
@@ -152,26 +135,29 @@ void set_scheduler_button_press_event(){
   CORE_EXIT_CRITICAL();
 
 }
+
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 /*
-@brief: Sets the global event variable to EVENT_BUTTON_RELEASE
+@brief: Sets the global event variable to EVENT_PB1_BUTTON_PRESSED
 @param: none
 @return: none
 */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
-void set_scheduler_button_release_event(){
-
-  CORE_DECLARE_IRQ_STATE;
+void  set_scheduler_pb1_button_press_event()
+{
+   CORE_DECLARE_IRQ_STATE;
 
    CORE_ENTER_CRITICAL();
 
-   sl_bt_external_signal(EVENT_BUTTON_RELEASE); //ext_signal |= EVENT_BUTTON_RELEASE
+   //sl_bt_external_signal(EVENT_BUTTON_PRESSED);
+   event |= EVENT_PB1_BUTTON_PRESSED;
+
 
    CORE_EXIT_CRITICAL();
-
 }
 
-set_scheduler_free_fall_event()
+
+void set_scheduler_free_fall_event()
 {
   CORE_DECLARE_IRQ_STATE;
 
@@ -195,6 +181,11 @@ event_e get_scheduler_event()
   {
       temp_event = EVENT_I2C_DONE;
       event &= ~EVENT_I2C_DONE;
+  }
+  else if(event & EVENT_PB1_BUTTON_PRESSED)
+  {
+      temp_event = EVENT_PB1_BUTTON_PRESSED;
+      event &= ~EVENT_PB1_BUTTON_PRESSED;
   }
   else if(event & EVENT_BUTTON_PRESSED)
   {
@@ -234,7 +225,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
           state = STATE_ACCELEROMETER_WRITE_START;
       }
       //if PB1 is pressed, then enable the timer to fire every 2msec
-      else if(current_event == EVENT_BUTTON_PRESSED)
+      else if(current_event == EVENT_PB1_BUTTON_PRESSED)
       {
           state = STATE_ENABLE_TIMER_TWO_MS;
       }
@@ -383,137 +374,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
   }
 }
 
-/*------------------------------------------------------------------------------------------------------------------------------------*/
-/*
-@brief: State machine for Discovery(client)
-@param: None
-@return: None
-*/
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-
-
-void discovery_statemachine(sl_bt_msg_t *evt){
-
-  uint32_t client_event = SL_BT_MSG_ID(evt->header); //Read client specific events
-  sl_status_t status = 0;
-  ble_data_struct_t* ble_common_data = get_ble_data();
-
-
-  switch (client_state){
-    case CLIENT_IDLE:
-      if(client_event == sl_bt_evt_system_boot_id){
-          client_state = SCANNING;
-      }
-      break;
-    case SCANNING:
-      if(client_event == sl_bt_evt_scanner_scan_report_id){
-          client_state = OPENING;
-      }
-      else if(client_event == sl_bt_evt_connection_closed_id){
-          client_state = SCANNING;
-      }
-      break;
-    case OPENING:
-      //Connection is established, start with service discovery
-      if(client_event == sl_bt_evt_connection_opened_id){
-          // Discover Health Thermometer service on the responder device
-          status |= sl_bt_gatt_discover_primary_services_by_uuid(evt->data.evt_connection_opened.connection,
-                                                            sizeof(thermo_service),
-                                                            (const uint8_t*)thermo_service);
-
-
-        #if ENABLE_LOGGING
-        if(status == SL_STATUS_OK){
-            LOG_INFO("CLIENT:sl_bt_evt_connection_opened_id success %d\n\r",status);
-        }
-        else{
-            LOG_INFO("CLIENT:sl_bt_evt_connection_opened_id fail %d\n\r",status);
-        }
-        #endif //ENABLE LOGGING
-          client_state = DISCOVER_SERVICE;
-      }
-      else if(client_event == sl_bt_evt_connection_closed_id){
-          client_state = SCANNING;
-      }
-      break;
-
-    case DISCOVER_SERVICE:
-      if(client_event == sl_bt_evt_gatt_procedure_completed_id){
-          //start with characteristics discovery
-          status |= sl_bt_gatt_discover_characteristics_by_uuid(evt->data.evt_gatt_procedure_completed.connection,
-                                                                   ble_common_data->thermometer_service_handle,
-                                                                   sizeof(temp_measure_char),
-                                                                   (const uint8_t*)temp_measure_char);
-
-          #if ENABLE_LOGGING
-          if(status == SL_STATUS_OK){
-              LOG_INFO("sl_bt_evt_gatt_procedure_completed_id success, discover services %d\n\r",status);
-          }
-          else{
-              LOG_INFO("sl_bt_evt_gatt_procedure_completed_id fail, discover services %d\n\r",status);
-          }
-          #endif
-          client_state = DISCOVER_CHAR;
-      }
-      else if(client_event == sl_bt_evt_connection_closed_id){
-          client_state = SCANNING;
-      }
-      break;
-
-    case DISCOVER_CHAR:
-      if(client_event == sl_bt_evt_gatt_procedure_completed_id){
-          sl_bt_scanner_stop(); //Might be optional
-
-          //Enable indication to server to start sending temperature value
-          status |= sl_bt_gatt_set_characteristic_notification(evt->data.evt_gatt_procedure_completed.connection,
-                                                               ble_common_data->thermometer_characteristic_handle,
-                                                               sl_bt_gatt_indication);
-          #if ENABLE_LOGGING
-          if(status == SL_STATUS_OK){
-              LOG_INFO("sl_bt_evt_gatt_procedure_completed_id success, discover characteristics %d\n\r",status);
-          }
-          else{
-              LOG_INFO("sl_bt_evt_gatt_procedure_completed_id fail, discover characteristics %d\n\r",status);
-          }
-          #endif
-          client_state = INDICATION_ENABLED;
-      }
-      else if(client_event == sl_bt_evt_connection_closed_id){
-          client_state = SCANNING;
-      }
-      break;
-
-    case INDICATION_ENABLED:
-      if(client_event == sl_bt_evt_gatt_characteristic_value_id){
-          if(evt->data.evt_gatt_characteristic.characteristic == gattdb_temperature_measurement)
-          {
-              status |= sl_bt_gatt_send_characteristic_confirmation(evt->data.evt_gatt_characteristic_value.connection);
-             uint8_t* temp_val = evt->data.evt_gatt_characteristic_value.value.data;
-             LOG_INFO("Receive data %x\n\r",temp_val[4]);
-
-             float temperature = gattFloat32ToInt(temp_val);
-             displayPrintf(DISPLAY_ROW_TEMPVALUE,"Temp val=%f",temperature);
-
-
-            #if ENABLE_LOGGING
-               LOG_INFO("sl_bt_evt_gatt_characteristic_value_id success %f\n\r",temperature);
-            #endif
-          }
-          else{
-            #if ENABLE_LOGGING
-              LOG_INFO("sl_bt_evt_gatt_characteristic_value_id fail %d\n\r",0);
-            #endif
-          }
-      }
-      else if(client_event == sl_bt_evt_connection_closed_id){
-          client_state = SCANNING;
-      }
-      break;
-
-
-  }
-
-}
 
 
 

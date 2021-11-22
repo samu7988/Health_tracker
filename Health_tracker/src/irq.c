@@ -126,9 +126,21 @@ void GPIO_EVEN_IRQHandler(void)
     CORE_ENTER_CRITICAL();
   // Get and clear all pending GPIO interrupts
   uint32_t interruptMask = GPIO_IntGet();
+  // if Accelerometer sensor generates an interrupt during free fall
 
+  if (GPIO->IF & (1 << ACCEL_INT1_PIN))
+   {
+       set_scheduler_free_fall_event();
+   }
+
+  // Check if PB0 was pressed(used to confirm bonding)
+  if (GPIO->IF & (1 << PB0_pin))
+  {
+      set_scheduler_button_press_event();
+
+  }
   GPIO_IntClear(interruptMask);
-  set_scheduler_free_fall_event();
+
 //  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
   CORE_EXIT_CRITICAL();
 
@@ -144,7 +156,7 @@ void GPIO_ODD_IRQHandler(void)
   if (GPIO->IF & (1 << PB1_pin))
   {
       gpioLed0Toggle();
-      set_scheduler_button_press_event();
+      set_scheduler_pb1_button_press_event();
       GPIO_IntClear(interruptMask);
 
   }

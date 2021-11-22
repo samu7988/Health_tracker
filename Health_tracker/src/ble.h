@@ -61,7 +61,8 @@ typedef enum{
   EVENT_FREE_FALL = 4,
   EVENT_TIMER_USER_REQUESTED_EXPIRE = 8, //event is set when user requested time period is expired
   EVENT_BUTTON_PRESSED = 16,
-  EVENT_BUTTON_RELEASE = 24,
+  EVENT_PB1_BUTTON_PRESSED = 24,
+  EVENT_BUTTON_RELEASE = 32,
   EVENT_DEFAULT = 0
 }event_e;
 //***********************************************************************************
