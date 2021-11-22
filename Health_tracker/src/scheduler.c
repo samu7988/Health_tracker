@@ -20,6 +20,7 @@
 #include "cb.h"
 #include "src/irq.h"
 #include "src/accelerometer.h"
+#include <stdbool.h>
 #define INCLUDE_LOG_DEBUG 1
 #include "src/log.h"
 
@@ -29,14 +30,7 @@
 //***********************************************************************************
 //                              Global variable
 //***********************************************************************************
-  state_e state = STATE_MASTER;
-  I2C_TransferReturn_TypeDef status = i2cTransferDone;
-  uint8_t reg_addr[1] = {ACCEL_REG_INT_SOURCE}; //Device id
-  uint8_t read_val[2] = {0};
-  event_e current_event = EVENT_DEFAULT;
 
-  event_e event = EVENT_DEFAULT; //Intiialise the externed variable to default state event
-  client_state_e client_state = CLIENT_IDLE;
 
   // Health Thermometer service UUID defined by Bluetooth SIG
 uint8_t thermo_service[2] = { 0x09, 0x18 };
@@ -44,7 +38,27 @@ uint8_t thermo_service[2] = { 0x09, 0x18 };
   //Temperature measurement characteristics UUID
 uint8_t temp_measure_char[2] = {0x1c, 0x2a};
 
+/*******************************************************************************
+ *   Global variables used for state machine(state and event information)
+ ***************************************************************************/
+static state_e state = STATE_MASTER;
 
+
+event_e event = EVENT_DEFAULT; //Intiialise the externed variable to default state event
+static client_state_e client_state = CLIENT_IDLE;
+static bool is_letimer_enabled = false;
+
+/*******************************************************************************
+ *   Global variables used for I2c and accelerometer(ADXL 345)
+ ***************************************************************************/
+static I2C_TransferReturn_TypeDef status = i2cTransferDone;
+static uint8_t reg_addr[1] = {ACCEL_REG_INT_SOURCE}; //Device id
+static uint8_t read_val[2] = {0};
+
+
+/*******************************************************************************
+ *   Global variables used for pulse sensor
+ ***************************************************************************/
 uint32_t sampleCounter = 0;          // used to determine pulse timing
 uint32_t lastBeatTime = 0;           // used to find IBI
 uint32_t thresh = 1950;                // used to find instant moment of heart beat, seeded
@@ -208,7 +222,8 @@ event_e get_scheduler_event()
 
 
 void health_tracker_statemachine(sl_bt_msg_t *evt){
-  current_event = get_scheduler_event();
+
+   event_e current_event = get_scheduler_event();
 
   switch(state)
   {
@@ -257,6 +272,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       {
           state = STATE_MASTER;
           LOG_INFO("Free fall detected %u\n\r",1);
+          //Send indications to bluetooth on next line(TO DO)
 
 
       }
@@ -327,6 +343,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
                runningTotal /= 10;                     // average the last 10 IBI values
                BPM = 60000/runningTotal;               // how many beats can fit into a minute? that's BPM!
                LOG_INFO("BPM %u\n\r",BPM);
+               //Send indications to client on next line(TO DO)
 
                // QS FLAG IS NOT CLEARED INSIDE THIS ISR
              }
