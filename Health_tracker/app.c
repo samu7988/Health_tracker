@@ -96,8 +96,8 @@ SL_WEAK void app_init(void)
   gpioInit();
   Clock_init();
   I2C_init();
-//  le_timer_init();
-//  ADC_init();
+  le_timer_init();
+  ADC_init();
 //  displayInit();
 //  create_cb(50);
 //  displayPrintf(DISPLAY_ROW_ASSIGNMENT,"A8");

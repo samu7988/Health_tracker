@@ -103,6 +103,8 @@ void ADC0_IRQHandler(void)
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 void I2C0_IRQHandler(void){
 
+  CORE_DECLARE_IRQ_STATE;
+  CORE_ENTER_CRITICAL();
    I2C_TransferReturn_TypeDef status = i2cTransferInProgress;
 
    status = I2C_Transfer(I2C0);
@@ -114,6 +116,7 @@ void I2C0_IRQHandler(void){
    if(status < i2cTransferDone){
 //       NVIC_DisableIRQ(I2C0_IRQn);
    }
+   CORE_EXIT_CRITICAL();
 
 }
 
@@ -133,26 +136,28 @@ void GPIO_EVEN_IRQHandler(void)
 
 }
 
-//void GPIO_ODD_IRQHandler(void)
-//{
-//  // Get and clear all pending GPIO interrupts
-//  uint32_t interruptMask = GPIO_IntGet();
-//
-//
-//  // Check if PB1 was pressed
-//  if (GPIO->IF & (1 << PB1_pin))
-//  {
-//      button_pressed = !button_pressed;
-//      if(button_pressed){
-//
-//          set_scheduler_button_press_event();
-//      }
-//      else{
-//
-//          set_scheduler_button_release_event();
-//      }
-//  }
-//  GPIO_IntClear(interruptMask);
-//
-//
-//}
+void GPIO_ODD_IRQHandler(void)
+{
+  // Get and clear all pending GPIO interrupts
+  uint32_t interruptMask = GPIO_IntGet();
+
+
+  // Check if PB1 was pressed
+  if (GPIO->IF & (1 << PB1_pin))
+  {
+      gpioLed1SetOn();
+
+      button_pressed = !button_pressed;
+      if(button_pressed){
+
+          set_scheduler_button_press_event();
+      }
+      else{
+
+          set_scheduler_button_release_event();
+      }
+  }
+  GPIO_IntClear(interruptMask);
+
+
+}

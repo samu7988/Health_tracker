@@ -172,7 +172,12 @@ set_scheduler_free_fall_event()
 event_e get_scheduler_event()
 {
   event_e temp_event = EVENT_DEFAULT;
-  if(event & EVENT_I2C_DONE)
+  if(event & EVENT_FREE_FALL)
+  {
+      temp_event = EVENT_FREE_FALL;
+      event &= ~ EVENT_FREE_FALL;
+  }
+  else if(event & EVENT_I2C_DONE)
   {
       temp_event = EVENT_I2C_DONE;
       event &= ~EVENT_I2C_DONE;
@@ -187,11 +192,7 @@ event_e get_scheduler_event()
       temp_event = EVENT_TIMER_TWO_MSEC_EXPIRE;
       event &= ~EVENT_TIMER_TWO_MSEC_EXPIRE;
   }
-  else if(event & EVENT_FREE_FALL)
-  {
-      temp_event = EVENT_FREE_FALL;
-      event &= ~ EVENT_FREE_FALL;
-  }
+
   return temp_event;
 }
 
@@ -213,8 +214,12 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
   {
     case STATE_MASTER:
     {
+      if(current_event == EVENT_FREE_FALL)
+      {
+          state = STATE_ACCELEROMETER_WRITE_START;
+      }
       //if PB1 is pressed, then enable the timer to fire every 2msec
-      if(current_event == EVENT_BUTTON_PRESSED)
+      else if(current_event == EVENT_BUTTON_PRESSED)
       {
           state = STATE_ENABLE_TIMER_TWO_MS;
       }
@@ -222,10 +227,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       else if(current_event == EVENT_TIMER_TWO_MSEC_EXPIRE)
       {
           state = STATE_PULSE_SENSOR_READ;
-      }
-      else if(current_event == EVENT_FREE_FALL)
-      {
-          state = STATE_ACCELEROMETER_WRITE_START;
       }
 
     }
@@ -272,6 +273,12 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     break;
     case STATE_PULSE_SENSOR_READ:
     {
+      if(current_event == EVENT_FREE_FALL)
+      {
+          state = STATE_ACCELEROMETER_WRITE_START;
+      }
+      else
+      {
       //Heart beat algorithm
            sampleCounter += 2;                         // keep track of the time in mS with this variable
            int N = sampleCounter - lastBeatTime;       // monitor the time since the last beat to avoid noise
@@ -343,6 +350,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
            }
 
            state = STATE_MASTER;
+      }
 
     }
     break;
