@@ -64,7 +64,7 @@
 @return: none
 */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
-I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t slave_addr,uint8_t non_blocking){
+I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t slave_addr){
 
 
   I2C_TransferReturn_TypeDef ret;
@@ -78,21 +78,15 @@ I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t sl
 
   //Start I2C transfer(read operation)
   ret = I2C_TransferInit(I2C0, &transfer);
-  if(non_blocking == false)
-    {
-      if(ret < i2cTransferNack){
-          return ret;
-      }
 
-      //I2c blocking mode
-      while(ret == i2cTransferInProgress){
-          ret = I2C_Transfer(I2C0);
-      }
-    }
-//  else
-//  {
-//      NVIC_EnableIRQ(I2C0_IRQn);
-//  }
+  if(ret < i2cTransferNack){
+      return ret;
+  }
+
+  //I2c blocking mode
+  while(ret == i2cTransferInProgress){
+      ret = I2C_Transfer(I2C0);
+  }
   return ret;
 
 
@@ -106,7 +100,7 @@ I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t sl
 @return: I2C_TransferReturn_TypeDef: Returns whether there is any error with I2c
 */
 /*-----------------------------------------------------------------------------------------------------------------------------*/
-I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t slave_add, uint8_t non_blocking){
+I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t slave_add){
 
   // Transfer structure
    I2C_TransferReturn_TypeDef result;
@@ -120,21 +114,14 @@ I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t sla
    //Start I2C transfer(read operation)
    result = I2C_TransferInit(I2C0, &transfer);
 
-   if(non_blocking == 0)
-   {
-     if(result < i2cTransferNack){
-         return result;
-     }
-
-     //I2c blocking mode
-     while(result == i2cTransferInProgress){
-         result = I2C_Transfer(I2C0);
-     }
+   if(result < i2cTransferNack){
+       return result;
    }
-//   else
-//   {
-//       NVIC_EnableIRQ(I2C0_IRQn);
-//   }
+
+   //I2c blocking mode
+   while(result == i2cTransferInProgress){
+       result = I2C_Transfer(I2C0);
+   }
    return result;
 
 }

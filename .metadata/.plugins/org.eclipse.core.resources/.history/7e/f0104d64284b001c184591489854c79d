@@ -89,10 +89,10 @@ I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t sl
           ret = I2C_Transfer(I2C0);
       }
     }
-//  else
-//  {
-//      NVIC_EnableIRQ(I2C0_IRQn);
-//  }
+  else
+  {
+      NVIC_EnableIRQ(I2C0_IRQn);
+  }
   return ret;
 
 
@@ -131,10 +131,11 @@ I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t sla
          result = I2C_Transfer(I2C0);
      }
    }
-//   else
-//   {
-//       NVIC_EnableIRQ(I2C0_IRQn);
-//   }
+   else
+   {
+       NVIC_EnableIRQ(I2C0_IRQn);
+);
+   }
    return result;
 
 }

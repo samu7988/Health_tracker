@@ -29,36 +29,4 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>emlib/em_adc.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/emlib/src/em_adc.c</locationURI>
-		</link>
-		<link>
-			<name>emlib/em_cmu.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/emlib/src/em_cmu.c</locationURI>
-		</link>
-		<link>
-			<name>emlib/em_core.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/emlib/src/em_core.c</locationURI>
-		</link>
-		<link>
-			<name>emlib/em_system.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/emlib/src/em_system.c</locationURI>
-		</link>
-		<link>
-			<name>CMSIS/EFR32BG13P/startup_gcc_efr32bg13p.s</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/Device/SiliconLabs/EFR32BG13P/Source/GCC/startup_efr32bg13p.S</locationURI>
-		</link>
-		<link>
-			<name>CMSIS/EFR32BG13P/system_efr32bg13p.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/platform/Device/SiliconLabs/EFR32BG13P/Source/system_efr32bg13p.c</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

@@ -36,9 +36,9 @@
 //***********************************************************************************
 
 void I2C_init();
-I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t slave_add, uint8_t non_blocking);
+I2C_TransferReturn_TypeDef I2C_read(uint8_t* read_val , uint8_t len, uint8_t slave_addr);
+I2C_TransferReturn_TypeDef I2C_write(uint8_t* read_val , uint8_t len, uint8_t slave_addr);
 I2C_TransferReturn_TypeDef I2C_write_read(uint8_t* write_val, uint8_t* read_val , uint8_t wlen,uint8_t rlen, uint8_t slave_add);
-I2C_TransferReturn_TypeDef I2C_write(uint8_t* write_val, uint8_t len, uint8_t slave_addr,uint8_t non_blocking);
 
 
 
