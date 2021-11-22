@@ -1,5 +1,0 @@
-eclipse.preferences.version=1
-knownParentDescs_com.silabs.ss.platform.sdk.core-protocolRegistry=com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.sdk.amazon\:3.2.1.0_1328626027\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.sdk.micrium\:5.11.1._1825136426\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.sdk.platform\:3.2.1.0_632527563\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.sdk.stack.bootloader\:1.12.0._-1316006082\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.stack.ble\:3.2.1.0_-1547030917\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.stack.btMesh\:2.1.1.0_830640304\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067.com.silabs.stack.flex\:3.2.1.0_704375208
-knownParentDescs_com.silabs.ss.platform.sdk.core-sdkManager=com.silabs.sdk.none\:0.0.0\u0000com.silabs.sdk.stack.super\:3.2.1._-1191013067\u0000com.silabs.stack.external.stackless\:1.0.0._1234321
-lastRefreshDate=1636786918761
-manualDescriptors=<?xml version\="1.0" encoding\="ASCII"?>\r\n<model\:MDescriptors xmlns\:model\="http\://www.silabs.com/ss/Studio.ecore"/>\r\n
