@@ -49,7 +49,6 @@ void LETIMER0_IRQHandler(void){
       LETIMER_IntClear(LETIMER0, LETIMER_IF_UF);
       rollover_count++;
       set_scheduler_two_ms_event();
-      gpioLed0Toggle();
 
 
 //      ADC_Start(ADC0, adcStartSingle);
@@ -127,7 +126,6 @@ void GPIO_EVEN_IRQHandler(void)
     CORE_ENTER_CRITICAL();
   // Get and clear all pending GPIO interrupts
   uint32_t interruptMask = GPIO_IntGet();
-   gpioLed0Toggle();
 
   GPIO_IntClear(interruptMask);
   set_scheduler_free_fall_event();
@@ -145,19 +143,11 @@ void GPIO_ODD_IRQHandler(void)
   // Check if PB1 was pressed
   if (GPIO->IF & (1 << PB1_pin))
   {
-      gpioLed1SetOn();
+      gpioLed0Toggle();
+      set_scheduler_button_press_event();
+      GPIO_IntClear(interruptMask);
 
-      button_pressed = !button_pressed;
-      if(button_pressed){
-
-          set_scheduler_button_press_event();
-      }
-      else{
-
-          set_scheduler_button_release_event();
-      }
   }
-  GPIO_IntClear(interruptMask);
 
 
 }

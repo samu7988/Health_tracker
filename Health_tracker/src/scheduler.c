@@ -280,8 +280,17 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     break;
     case STATE_ENABLE_TIMER_TWO_MS:
     {
+      if(is_letimer_enabled == false)
+      {
       //Enable the LETIMER to fire every 2msec
-      LETIMER_Enable(LETIMER0,true);
+          LETIMER_Enable(LETIMER0,true);
+          is_letimer_enabled = true;
+      }
+      else
+      {
+          LETIMER_Enable(LETIMER0,false);
+          is_letimer_enabled = false;
+      }
       state = STATE_MASTER;
 
 
