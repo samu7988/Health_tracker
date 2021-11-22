@@ -127,9 +127,7 @@
 /**************************************************************************//**
  * Global and extern variable
  *****************************************************************************/
-extern volatile int IBI;            // int that holds the time interval between beats! Must be seeded!
-extern volatile int BPM;                   // int that holds raw Analog in 0. updated every 2mS
-extern volatile bool QS ;        // becomes true when Arduoino finds a beat.
+
 
 /**************************************************************************//**
  * Application Init.

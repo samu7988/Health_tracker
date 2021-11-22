@@ -91,7 +91,7 @@ void setup_accelerometer()
 
   // Select INT 1 for get activities
   setup_interrupt(ACCEL_INT1);
-  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
+//  uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
 
 }
 

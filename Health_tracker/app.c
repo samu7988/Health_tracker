@@ -51,9 +51,7 @@
 
 
 
-volatile int IBI = 600;
-volatile int BPM = 0;
-volatile bool QS = false;
+
 
 
 
@@ -107,6 +105,8 @@ SL_WEAK void app_init(void)
 //  displayPrintf(DISPLAY_ROW_NAME,BLE_DEVICE_TYPE_STRING);
 
   setup_accelerometer();
+//  NVIC_EnableIRQ(I2C0_IRQn);
+
   if(LOWEST_ENERGY_MODE == EM1){
       sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1);
   }
@@ -136,6 +136,7 @@ SL_WEAK void app_process_action(void)
 
 
   sl_bt_msg_t *evt = NULL;
+//  health_tracker_statemachine(evt);
 //  accelerometer_statemachine(evt);
 
 }
