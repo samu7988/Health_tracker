@@ -378,6 +378,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
                runningTotal += rate[9];                // add the latest IBI to runningTotal
                runningTotal /= 10;                     // average the last 10 IBI values
                BPM = 60000/runningTotal;               // how many beats can fit into a minute? that's BPM!
+               BPM = BPM/2; //This is hack to divide the BPM by 2 to get correct readings
                LOG_INFO("BPM %u\n\r",BPM);
                //Send indications to client on next line(TO DO)
 
