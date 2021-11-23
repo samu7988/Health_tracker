@@ -107,7 +107,7 @@ cb_status_e is_empty(cb_t* cb_handle){
 
       if(cb_handle->count == 0){
           #if ENABLE_LOGGING
-          LOG_INFO("is_empty() cb is empty %d\n\r",0);
+//          LOG_INFO("is_empty() cb is empty %d\n\r",0);
           #endif
           status =  CB_EMPTY;
       }

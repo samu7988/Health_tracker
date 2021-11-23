@@ -67,7 +67,7 @@ void setup_accelerometer()
   /*GPIO pin setup.
     SDA : PC10
     SCL : PC11
-    INT1: PC8
+    INT1: PD12
   */
 
   uint8_t val = 0;

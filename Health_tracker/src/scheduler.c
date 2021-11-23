@@ -26,7 +26,7 @@
 
 // Include logging for this file
 #define STATE_MACHINE_LOGGING (0)
-
+#define ENABLE_BLE (1)
 //***********************************************************************************
 //                              Global variable
 //***********************************************************************************
@@ -86,8 +86,13 @@ void set_scheduler_i2c_event(){
   CORE_DECLARE_IRQ_STATE;
 
    CORE_ENTER_CRITICAL();
+
+  #if ENABLE_BLE == 1
+   sl_bt_external_signal(EVENT_I2C_DONE);
+  #else
    event |= EVENT_I2C_DONE;
-//   sl_bt_external_signal(EVENT_I2C_DONE);
+  #endif
+
 
   CORE_EXIT_CRITICAL();
 
@@ -106,8 +111,11 @@ void set_scheduler_two_ms_event(){
 
    CORE_ENTER_CRITICAL();
 
-   //sl_bt_external_signal(EVENT_TIMER_THREE_SEC_EXPIRE);
+  #if ENABLE_BLE == 1
+   sl_bt_external_signal(EVENT_TIMER_TWO_MSEC_EXPIRE);
+  #else
    event |= EVENT_TIMER_TWO_MSEC_EXPIRE;
+  #endif
 
   CORE_EXIT_CRITICAL();
 
@@ -128,8 +136,12 @@ void set_scheduler_button_press_event(){
 
    CORE_ENTER_CRITICAL();
 
-   //sl_bt_external_signal(EVENT_BUTTON_PRESSED);
+  #if ENABLE_BLE == 1
+   sl_bt_external_signal(EVENT_BUTTON_PRESSED);
+  #else
    event |= EVENT_BUTTON_PRESSED;
+  #endif
+
 
 
   CORE_EXIT_CRITICAL();
@@ -149,10 +161,13 @@ void  set_scheduler_pb1_button_press_event()
 
    CORE_ENTER_CRITICAL();
 
-   //sl_bt_external_signal(EVENT_BUTTON_PRESSED);
+
+
+  #if ENABLE_BLE == 1
+   sl_bt_external_signal(EVENT_PB1_BUTTON_PRESSED);
+  #else
    event |= EVENT_PB1_BUTTON_PRESSED;
-
-
+  #endif
    CORE_EXIT_CRITICAL();
 }
 
@@ -163,7 +178,11 @@ void set_scheduler_free_fall_event()
 
    CORE_ENTER_CRITICAL();
 
+  #if ENABLE_BLE == 1
+   sl_bt_external_signal(EVENT_FREE_FALL);
+  #else
    event |= EVENT_FREE_FALL;
+  #endif
 
    CORE_EXIT_CRITICAL();
 }
@@ -214,23 +233,40 @@ event_e get_scheduler_event()
 
 void health_tracker_statemachine(sl_bt_msg_t *evt){
 
-   event_e current_event = get_scheduler_event();
+//   event_e current_event = get_scheduler_event();
+
+  #if ENABLE_BLE == 1
+  // Only run temperature state machine if header is equal to external event signal id(board event)
+  //External signal events are basically COMP1_EVENT, UF_EVENT(3sec), and I2C_EVENTS
+  if(SL_BT_MSG_ID(evt->header) != sl_bt_evt_system_external_signal_id){
+      #if ENABLE_LOGGING && STATE_MACHINE_LOGGING
+      LOG_INFO("Not an external signal event:%d\n\r",1);
+      #endif
+      return;
+  }
+
+  event_e current_event = evt->data.evt_system_external_signal.extsignals; //event
+
+  ble_data_struct_t* ble_common_data = get_ble_data(); //get reference to common ble data structure
+  #else
+     event_e current_event = get_scheduler_event();
+  #endif
 
   switch(state)
   {
     case STATE_MASTER:
     {
-      if(current_event == EVENT_FREE_FALL)
+      if(current_event & EVENT_FREE_FALL)
       {
           state = STATE_ACCELEROMETER_WRITE_START;
       }
       //if PB1 is pressed, then enable the timer to fire every 2msec
-      else if(current_event == EVENT_PB1_BUTTON_PRESSED)
+      else if(current_event & EVENT_PB1_BUTTON_PRESSED)
       {
           state = STATE_ENABLE_TIMER_TWO_MS;
       }
       //If 2msec time has expired, start process the ADC data if available
-      else if(current_event == EVENT_TIMER_TWO_MSEC_EXPIRE)
+      else if(current_event & EVENT_TIMER_TWO_MSEC_EXPIRE)
       {
           state = STATE_PULSE_SENSOR_READ;
       }
@@ -249,7 +285,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     case STATE_ACCELEROMETER_READ_START:
     {
       //once previous I2c transaction/transfer is done.
-      if(current_event == EVENT_I2C_DONE)
+      if(current_event & EVENT_I2C_DONE)
       {
         status = I2C_read(&read_val[0],1, ACCELEROMETER_SENSOR_ADDRESS,1); //Read values from INT_SOURCE register of accelerometer.
         state = STATE_INTERRUPT_SOURCE_REG_CLEARED;
@@ -259,7 +295,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     break;
     case STATE_INTERRUPT_SOURCE_REG_CLEARED:
     {
-      if(current_event == EVENT_I2C_DONE)
+      if(current_event & EVENT_I2C_DONE)
       {
           state = STATE_MASTER;
           LOG_INFO("Free fall detected %u\n\r",1);
@@ -289,7 +325,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     break;
     case STATE_PULSE_SENSOR_READ:
     {
-      if(current_event == EVENT_FREE_FALL)
+      if(current_event & EVENT_FREE_FALL)
       {
           state = STATE_ACCELEROMETER_WRITE_START;
       }

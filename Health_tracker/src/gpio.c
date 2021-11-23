@@ -33,7 +33,7 @@ void gpioInit()
   GPIO_PinModeSet(LED1_port, LED1_pin, gpioModePushPull, false);
 
   //accelerometer INT1 pin(PC8)
-  GPIO_PinModeSet(ACCELEROMETER_port, ACCELEROMETER_pin, gpioModeInput, 0);
+  GPIO_PinModeSet(ACCELEROMETER_port, ACCELEROMETER_pin, gpioModeInput, false);
   GPIO_ExtIntConfig(ACCELEROMETER_port,ACCELEROMETER_pin,ACCELEROMETER_pin,true,false,true); //Rising edge interrupt for INT1
 
 

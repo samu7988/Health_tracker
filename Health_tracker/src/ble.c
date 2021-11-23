@@ -168,7 +168,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
     case sl_bt_evt_connection_opened_id:
      #if DEVICE_IS_BLE_SERVER
       status = 0;
-      connection_open = 1; //Indicates that the connection is opened
+//      connection_open = 1; //Indicates that the connection is opened
 
       status |= sl_bt_advertiser_stop(ble_common_data->advertisingSetHandle);
 
@@ -193,7 +193,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
     case sl_bt_evt_connection_closed_id:
       #if DEVICE_IS_BLE_SERVER == 1
       status = 0;
-      connection_open = 0; //Indicates that the connection is closed
+//      connection_open = 0; //Indicates that the connection is closed
 
 
       //Delete any existing bondings

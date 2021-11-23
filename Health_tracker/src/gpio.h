@@ -33,12 +33,11 @@
 #define PB1_port   (gpioPortF)
 #define PB1_pin    (7)
 
-#define ACCEL_INT1_PORT (gpioPortC)
-#define ACCEL_INT1_PIN  (8)
 
 
-#define ACCELEROMETER_port (gpioPortC)
-#define ACCELEROMETER_pin  (8)
+
+#define ACCELEROMETER_port (gpioPortD)
+#define ACCELEROMETER_pin  (12)
 
 
 
