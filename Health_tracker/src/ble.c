@@ -23,51 +23,6 @@
 //***********************************************************************************
 //                               Macros
 //***********************************************************************************
-int power(int num, int exponent){
-
-  int result = 1;
-  while(exponent){
-      result *= num;
-      exponent--;
-  }
-  return result;
-}
-
-// Original code from Dan Walkes. I (Sluiter) fixed a sign extension bug with the mantissa.
-// convert IEEE-11073 32-bit float to integer
-float gattFloat32ToInt(const uint8_t *value_start_little_endian)
-{
-  uint8_t signByte = 0;
-  int32_t mantissa;
-  // data format pointed at by value_start_little_endian is:
-  // [0] = contains the flags byte
-  // [3][2][1] = mantissa (24-bit 2’s complement)
-  // [4] = exponent (8-bit 2’s complement)
-  int8_t exponent = (int8_t)value_start_little_endian[4];
-  // sign extend the mantissa value if the mantissa is negative
-  if (value_start_little_endian[3] & 0x80) { // msb of [3] is the sign of the mantissa
-  signByte = 0xFF;
-  }
-  mantissa = (int32_t) (value_start_little_endian[1] << 0) |
-  (value_start_little_endian[2] << 8) |
-  (value_start_little_endian[3] << 16) |
-  (signByte << 24) ;
-
-  float temperature = 0;
-  if(exponent < 0){
-      exponent = -1 * exponent;
-//      LOG_INFO("Exponent value %d\n", power(10,exponent));
-      temperature = (((float)1/power(10, exponent)) * mantissa);
-  }
-//   value = 10^exponent * mantissa, pow() returns a double type
-  else{
-      temperature = (power(10, exponent) * mantissa);
-  }
-  //temperature = (float)mantissa/1000;
-  LOG_INFO("Tempearture: %f\n\r",temperature);
-
-  return temperature;
-} // gattFloat32ToInt
 
 
 
@@ -81,9 +36,9 @@ ble_data_struct_t ble_data;
 static const uint8_t server_address[1][6] = SERVER_BT_ADDRESS;
 #endif
 
-bool temperature_char = 0; //Global boolean variable(initially temperature characteristics is OFF)
-bool button_char = 0;
-bool connection_open = 0; //Initially set connection as closed
+bool pulse_sensor_char = 0; //Global boolean variable(initially temperature characteristics is OFF)
+bool accelerometer_char = 0;
+//bool connection_open = 0; //Initially set connection as closed
 bool inflight_indication = 0; //No inflight
 
 //***********************************************************************************
@@ -230,36 +185,36 @@ void handle_ble_event(sl_bt_msg_t *evt){
       //if Client configuration for temperature characteristics are changed(either temperature indications enabled/disabled)
       //if temperature indications are enabled, make the temperature_char = True and turn on LED0
       //elif temperature indications are disabled, make the temperature_char = False and turn off LED0
-      if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_temperature_measurement &&
+      if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_BPM &&
           evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_client_config)
       {
 
             //If Indications are enabled
             if(evt->data.evt_gatt_server_characteristic_status.client_config_flags ==  sl_bt_gatt_server_indication){
 
-            temperature_char = 1; //Enable indication
+                pulse_sensor_char = 1; //Enable indication
 
-            //Turn on LED0
-            gpioLed0SetOn();
+              //Turn on LED0
+              gpioLed0SetOn();
 
-             ble_common_data->char_connection_handle =  evt->data.evt_gatt_server_characteristic_status.connection;
+               ble_common_data->char_connection_handle =  evt->data.evt_gatt_server_characteristic_status.connection;
 
-            #if ENABLE_LOGGING
-            LOG_INFO("Temperature Indications are enabled %d\n\r",0);
-            #endif
+              #if ENABLE_LOGGING
+              LOG_INFO("Pulse sensor Indications are enabled %d\n\r",0);
+              #endif
           }
           else
           {
             //Indications are disabled
             //Turn off the LED0
-            temperature_char = 0;
+            pulse_sensor_char = 0;
             gpioLed0SetOff();
           }
       }
       //if Client configuration for button characteristics are changed(either button indications enabled/disabled)
       //if button indications are enabled, make the button_char = True and turn on LED1
       //elif button indicatiosn are disabled, make the button_char = False and turn off LED1
-      else if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_button_state &&
+      else if(evt->data.evt_gatt_server_characteristic_status.characteristic == gattdb_Free_fall  &&
           evt->data.evt_gatt_server_characteristic_status.status_flags == sl_bt_gatt_server_client_config)
       {
 
@@ -274,16 +229,16 @@ void handle_ble_event(sl_bt_msg_t *evt){
               ble_common_data->char_connection_handle =  evt->data.evt_gatt_server_characteristic_status.connection;
 
               //Set this variable to indicate that indications are enabled
-              button_char = 1;
+              accelerometer_char = 1;
 
               //Turn on the LED1
               gpioLed1SetOn();
 
           #if ENABLE_LOGGING
           if(status == SL_STATUS_OK)
-            LOG_INFO("Button state Indications are enabled%d\n\r",ble_common_data->button_pressed);
+            LOG_INFO("Accelerometer Indications are enabled%d\n\r",ble_common_data->button_pressed);
           else
-            LOG_INFO("Button state indications failed %d\n\r",status);
+            LOG_INFO("Accelerometer indications failed %d\n\r",status);
           #endif
 
         }
@@ -291,7 +246,7 @@ void handle_ble_event(sl_bt_msg_t *evt){
         {
               //Indications are disabled
               //Turn off the LED1
-              button_char = 0;
+            accelerometer_char = 0;
               gpioLed1SetOff();
         }
       }
@@ -302,8 +257,8 @@ void handle_ble_event(sl_bt_msg_t *evt){
       }
       else
       {
-          temperature_char = 0;
-          button_char = 0;
+          pulse_sensor_char = 0;
+          accelerometer_char = 0;
           #if ENABLE_LOGGING
           LOG_INFO("Indications are disabled %d\n\r",0);
           #endif
@@ -409,35 +364,35 @@ void handle_ble_event(sl_bt_msg_t *evt){
        ***********************************************/
     case sl_bt_evt_system_soft_timer_id:
 
-      if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
-      {
-          indication_t dqued_val;
-          cb_dequeue(cbuffer, &dqued_val);
-          #if ENABLE_LOGGING
-          if(dqued_val.charHandle == gattdb_temperature_measurement){
-              LOG_INFO("==soft timer event: dequeued temperature event %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
-          }
-          else if(dqued_val.charHandle == gattdb_button_state){
-              LOG_INFO("==soft timer event: dequeued button event %d\n\r",dqued_val.buffer[0]);
-          }
-          #endif
-
-          status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
-          inflight_indication = 1;
-
-
-        #if ENABLE_LOGGING
-        if(status == SL_STATUS_OK)
-        {
-
-            LOG_INFO("soft timer success %u\n\r",status);
-        }
-        else
-        {
-            LOG_INFO("soft timer fail %u\n\r",status);
-        }
-        #endif
-      }
+//      if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
+//      {
+//          indication_t dqued_val;
+//          cb_dequeue(cbuffer, &dqued_val);
+//          #if ENABLE_LOGGING
+//          if(dqued_val.charHandle == gattdb_temperature_measurement){
+//              LOG_INFO("==soft timer event: dequeued temperature event %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
+//          }
+////          else if(dqued_val.charHandle == gattdb_button_state){
+////              LOG_INFO("==soft timer event: dequeued button event %d\n\r",dqued_val.buffer[0]);
+////          }
+//          #endif
+//
+//          status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
+//          inflight_indication = 1;
+//
+//
+//        #if ENABLE_LOGGING
+//        if(status == SL_STATUS_OK)
+//        {
+//
+//            LOG_INFO("soft timer success %u\n\r",status);
+//        }
+//        else
+//        {
+//            LOG_INFO("soft timer fail %u\n\r",status);
+//        }
+//        #endif
+//      }
 
       //Prevent charge build up on LCD, occurs every 1 second
 
@@ -484,81 +439,6 @@ void handle_ble_event(sl_bt_msg_t *evt){
             status |= sl_bt_sm_passkey_confirm(ble_common_data->passkey_handle,1);
 
           }
-          //send button_state value to client if indications are enabled and bonding is complete
-          else if(ble_common_data->bonding == 1 && button_char == 1)
-          {
-              //Update local gatt database
-              uint8_t button_pressed = 1;
-              status |= sl_bt_gatt_server_write_attribute_value(gattdb_button_state,0, sizeof(button_pressed), &button_pressed); //Update local gatt database
-
-
-              if(inflight_indication == 0 && is_empty(cbuffer) == CB_EMPTY)
-              {
-                  uint8_t button_pressed = 1;
-//                  LOG_INFO("##No inflight indication so send the button press indication directly%d\n\r",0);
-                status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_button_state, sizeof(button_pressed),&button_pressed);
-                inflight_indication = 1;
-
-                #if ENABLE_LOGGING
-                if(status == SL_STATUS_OK)
-                {
-
-                    LOG_INFO("Sending button press indication success %u\n\r",status);
-                }
-                else
-                {
-                    LOG_INFO("Sending button press indication fail %u\n\r",status);
-                }
-                #endif
-
-              }
-              else if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
-              {
-                  indication_t dqued_val;
-                  cb_dequeue(cbuffer, &dqued_val);
-
-                  #if ENABLE_LOGGING
-                  if(dqued_val.charHandle == gattdb_temperature_measurement){
-                      LOG_INFO("==soft timer event: dequeued temperature event %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
-                  }
-                  else if(dqued_val.charHandle == gattdb_button_state){
-                      LOG_INFO("==soft timer event: dequeued button event %d\n\r",dqued_val.buffer[0]);
-                  }
-                  #endif
-
-                  status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
-                  inflight_indication = 1;
-              }
-              else
-              {
-//                  LOG_INFO("**Indication in flight or cb not empty, Enqueue button press event in cb %d\n\r",0);
-                  indication_t temp;
-                  temp.charHandle = gattdb_button_state;
-                  temp.bufferLength = 1;
-                  temp.buffer[0] = 0x01;
-                  if(cb_enqueue(cbuffer, &temp) == CB_ERROR)
-                  {
-                      #if ENABLE_LOGGING
-                      LOG_INFO("Error while enqueueing in button press %d\n\r",-1);
-                      #endif
-                  }
-                  else{
-                      #if ENABLE_LOGGING
-                      LOG_INFO("enqueued in button press %d\n\r",cb_get_length(cbuffer));
-                      #endif
-                  }
-              }
-
-          }
-          //if indications are not enabled and bonding is successfull
-          else if(ble_common_data->bonding == 1 && button_char == 0)
-          {
-              uint8_t button_pressed = 1;
-
-              //Update local gatt database
-              status |= sl_bt_gatt_server_write_attribute_value(gattdb_button_state,0, sizeof(button_pressed), &button_pressed); //Update local gatt database
-          }
-
 
 
           #if ENABLE_LOGGING

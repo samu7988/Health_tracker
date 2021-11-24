@@ -65,7 +65,7 @@ uint32_t thresh = 1950;                // used to find instant moment of heart b
 uint32_t P = 1950;                      // used to find peak in pulse wave, seeded
 uint32_t T = 1950;                     // used to find trough in pulse wave, seeded
 int IBI = 600;
-int BPM = 0;
+uint8_t BPM = 0;
 
 
 bool Pulse = false;     // "True" when User's live heartbeat is detected. "False" when not a "live beat".
@@ -233,13 +233,13 @@ event_e get_scheduler_event()
 
 void health_tracker_statemachine(sl_bt_msg_t *evt){
 
-//   event_e current_event = get_scheduler_event();
+  LOG_INFO("State %d\n\r",state);
 
   #if ENABLE_BLE == 1
   // Only run temperature state machine if header is equal to external event signal id(board event)
   //External signal events are basically COMP1_EVENT, UF_EVENT(3sec), and I2C_EVENTS
   if(SL_BT_MSG_ID(evt->header) != sl_bt_evt_system_external_signal_id){
-      #if ENABLE_LOGGING && STATE_MACHINE_LOGGING
+      #if ENABLE_LOGGING
       LOG_INFO("Not an external signal event:%d\n\r",1);
       #endif
       return;
@@ -251,14 +251,16 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
   #else
      event_e current_event = get_scheduler_event();
   #endif
-
   switch(state)
   {
     case STATE_MASTER:
     {
       if(current_event & EVENT_FREE_FALL)
       {
-          state = STATE_ACCELEROMETER_WRITE_START;
+          LOG_INFO("Event free fall state machine\n\r");
+          status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
+
+          state = STATE_ACCELEROMETER_READ_START;
       }
       //if PB1 is pressed, then enable the timer to fire every 2msec
       else if(current_event & EVENT_PB1_BUTTON_PRESSED)
@@ -271,15 +273,37 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
           state = STATE_PULSE_SENSOR_READ;
       }
 
+#if ENABLE_BLE == 1
+      //if PB0 is pressed after bonding is successfully
+      else if((current_event & EVENT_BUTTON_PRESSED) && ble_common_data->bonding == 1)
+      {
+          if(accelerometer_char == 1)
+           {
+              uint8_t free_fall = 0;
+               //Send temperature value to client
+               status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_Free_fall, sizeof(free_fall), &free_fall);
+               inflight_indication = 1; //Indicates indication inflight
+
+             //Update local gatt database
+             sl_bt_gatt_server_write_attribute_value(gattdb_Free_fall,0, sizeof(free_fall), &free_fall); //Update local gatt database
+
+               #if ENABLE_LOGGING
+              if(status == 0){
+                LOG_INFO("Send indication with free fall %u \n\r",0);
+              }
+              else{
+                LOG_INFO("Send indication failed %d\n\r",1);
+              }
+              #endif
+
+              (void)status; //suppress warning for this variable
+           //Send indications to client on next line(TO DO)
+           }
+      }
+#endif
+
     }
 
-    break;
-
-    case STATE_ACCELEROMETER_WRITE_START:
-    {
-      status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
-      state = STATE_ACCELEROMETER_READ_START;
-    }
     break;
 
     case STATE_ACCELEROMETER_READ_START:
@@ -287,6 +311,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       //once previous I2c transaction/transfer is done.
       if(current_event & EVENT_I2C_DONE)
       {
+          LOG_INFO("Starting I2c read\n\r");
+
         status = I2C_read(&read_val[0],1, ACCELEROMETER_SENSOR_ADDRESS,1); //Read values from INT_SOURCE register of accelerometer.
         state = STATE_INTERRUPT_SOURCE_REG_CLEARED;
       }
@@ -297,10 +323,36 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     {
       if(current_event & EVENT_I2C_DONE)
       {
+          LOG_INFO("Reporting values\n\r");
+
           state = STATE_MASTER;
           LOG_INFO("Free fall detected %u\n\r",1);
           //Send indications to bluetooth on next line(TO DO)
+          //Send to client only if indications are enabled.
+#if ENABLE_BLE == 1
+          if(accelerometer_char == 1)
+          {
+              uint8_t free_fall = 1;
+              //Send temperature value to client
+              status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_Free_fall, sizeof(free_fall), &free_fall);
+              inflight_indication = 1; //Indicates indication inflight
 
+            //Update local gatt database
+            sl_bt_gatt_server_write_attribute_value(gattdb_Free_fall,0, sizeof(free_fall), &free_fall); //Update local gatt database
+
+              #if ENABLE_LOGGING
+             if(status == 0){
+               LOG_INFO("Send indication with free fall %u \n\r",1);
+             }
+             else{
+               LOG_INFO("Send indication failed %d\n\r",1);
+             }
+             #endif
+
+             (void)status; //suppress warning for this variable
+          //Send indications to client on next line(TO DO)
+          }
+#endif
 
       }
     }
@@ -335,20 +387,25 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
            sampleCounter += 2;                         // keep track of the time in mS with this variable
            int N = sampleCounter - lastBeatTime;       // monitor the time since the last beat to avoid noise
            //  find the peak and trough of the pulse wave
-           if(Signal < thresh && N > (IBI/5)*3){       // avoid dichrotic noise by waiting 3/5 of last IBI
-             if (Signal < T){                        // T is the trough
+           if(Signal < thresh && N > (IBI/5)*3)
+           {       // avoid dichrotic noise by waiting 3/5 of last IBI
+             if (Signal < T)
+             {                                     // T is the trough
                T = Signal;                         // keep track of lowest point in pulse wave
              }
            }
 
-           if(Signal > thresh && Signal > P){          // thresh condition helps avoid noise
+           if(Signal > thresh && Signal > P)
+           {          // thresh condition helps avoid noise
              P = Signal;                             // P is the peak
            }
 
            //  NOW IT'S TIME TO LOOK FOR THE HEART BEAT
            // signal surges up in value every time there is a pulse
-           if (N > 250){                                   // avoid high frequency noise
-             if ( (Signal > thresh) && (Pulse == false) && (N > (IBI/5)*3) ){
+           if (N > 250)
+           {                                   // avoid high frequency noise
+             if ( (Signal > thresh) && (Pulse == false) && (N > (IBI/5)*3) )
+             {
                Pulse = true;                               // set the Pulse flag when we think there is a pulse
      //          digitalWrite(blinkPin,HIGH);                // turn on pin 13 LED
                IBI = sampleCounter - lastBeatTime;         // measure time between beats in mS
@@ -379,14 +436,39 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
                runningTotal /= 10;                     // average the last 10 IBI values
                BPM = 60000/runningTotal;               // how many beats can fit into a minute? that's BPM!
                BPM = BPM/2; //This is hack to divide the BPM by 2 to get correct readings
-               LOG_INFO("BPM %u\n\r",BPM);
-               //Send indications to client on next line(TO DO)
+               LOG_INFO("BPM %u \n\r",BPM);
 
-               // QS FLAG IS NOT CLEARED INSIDE THIS ISR
+               sl_status_t status = 0;
+#if ENABLE_BLE == 1
+               //Send to client only if indications are enabled.
+               if(pulse_sensor_char == 1)
+               {
+                   //Send temperature value to client
+                   status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_BPM, sizeof(BPM), &BPM);
+                   inflight_indication = 1; //Indicates indication inflight
+
+                 //Update local gatt database
+                 sl_bt_gatt_server_write_attribute_value(gattdb_BPM,0, sizeof(BPM), &BPM); //Update local gatt database
+
+                   #if ENABLE_LOGGING
+                  if(status == 0){
+                    LOG_INFO("Send indication with BPM %u \n\r",BPM);
+                  }
+                  else{
+                    LOG_INFO("Send indication failed %d\n\r",1);
+                  }
+                  #endif
+
+                  (void)status; //suppress warning for this variable
+               //Send indications to client on next line(TO DO)
+               }
+#endif
+
              }
            }
 
-           if (Signal < thresh && Pulse == true){   // when the values are going down, the beat is over
+           if (Signal < thresh && Pulse == true)
+           {   // when the values are going down, the beat is over
              Pulse = false;                         // reset the Pulse flag so we can do it again
              amp = P - T;                           // get amplitude of the pulse wave
              thresh = amp/2 + T;                    // set thresh at 50% of the amplitude
@@ -394,7 +476,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
              T = thresh;
            }
 
-           if (N > 2500){                           // if 2.5 seconds go by without a beat
+           if (N > 2500)
+           {                           // if 2.5 seconds go by without a beat
              thresh = 1910;                          // set thresh default
              P = 1900;                               // set P default
              T = 1900;                               // set T default

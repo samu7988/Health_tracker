@@ -101,7 +101,7 @@ SL_WEAK void app_init(void)
   displayInit();
   create_cb(50);
   displayPrintf(DISPLAY_ROW_ASSIGNMENT,"Health Tracker");
-//
+
   displayPrintf(DISPLAY_ROW_NAME,BLE_DEVICE_TYPE_STRING);
 
   setup_accelerometer();

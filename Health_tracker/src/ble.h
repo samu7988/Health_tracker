@@ -102,7 +102,8 @@ typedef struct {
 //***********************************************************************************
 //                               Global variables
 //***********************************************************************************
-extern bool temperature_char;
+extern bool pulse_sensor_char;
+extern bool accelerometer_char;
 extern bool connection_open;
 extern bool inflight_indication;
 
