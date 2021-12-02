@@ -45,7 +45,6 @@ static state_e state = STATE_MASTER;
 
 
 event_e event = EVENT_DEFAULT; //Intiialise the externed variable to default state event
-static client_state_e client_state = CLIENT_IDLE;
 static bool is_letimer_enabled = false;
 
 /*******************************************************************************
@@ -233,15 +232,12 @@ event_e get_scheduler_event()
 
 void health_tracker_statemachine(sl_bt_msg_t *evt){
 
-  LOG_INFO("State %d\n\r",state);
 
   #if ENABLE_BLE == 1
   // Only run temperature state machine if header is equal to external event signal id(board event)
   //External signal events are basically COMP1_EVENT, UF_EVENT(3sec), and I2C_EVENTS
-  if(SL_BT_MSG_ID(evt->header) != sl_bt_evt_system_external_signal_id){
-      #if ENABLE_LOGGING
-      LOG_INFO("Not an external signal event:%d\n\r",1);
-      #endif
+  if(SL_BT_MSG_ID(evt->header) != sl_bt_evt_system_external_signal_id)
+  {
       return;
   }
 
@@ -361,7 +357,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     {
       if(is_letimer_enabled == false)
       {
-      //Enable the LETIMER to fire every 2msec
+      //Enable the LETIMER to fire every 2msec for pulse sensor
+          LOG_INFO("User pressed PB1\n\r");
           LETIMER_Enable(LETIMER0,true);
           is_letimer_enabled = true;
       }
@@ -369,6 +366,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       {
           LETIMER_Enable(LETIMER0,false);
           is_letimer_enabled = false;
+          LOG_INFO("User disabled timer\n\r");
       }
       state = STATE_MASTER;
 
@@ -379,7 +377,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     {
       if(current_event & EVENT_FREE_FALL)
       {
-          state = STATE_ACCELEROMETER_WRITE_START;
+          state = STATE_ACCELEROMETER_READ_START;
       }
       else
       {

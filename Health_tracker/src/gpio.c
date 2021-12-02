@@ -44,7 +44,7 @@ void gpioInit()
 
   //Initialise PB1 in input mode and set to rising edge interrupt(PF7)
   GPIO_PinModeSet(PB1_port, PB1_pin, gpioModeInputPull, true);
-  GPIO_ExtIntConfig (PB1_port, PB1_pin, PB1_pin, true, false, true);
+  GPIO_ExtIntConfig (PB1_port, PB1_pin, PB1_pin, true, true, true);
 
 
   //Clear all pending interrupts

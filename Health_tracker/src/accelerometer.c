@@ -22,7 +22,7 @@
 //***********************************************************************************
 //                              Global variable
 //***********************************************************************************
-static bool free_fall_event = false;
+
 
 
  //***********************************************************************************
@@ -75,6 +75,10 @@ void setup_accelerometer()
   //Read the Device ID register
   val = read_accelerometer_register(ACCEL_DEVID);
 
+  if(val != 0xE5)
+  {
+      LOG_INFO("Device ID register reading incorrect\n\r");
+  }
   //Enable wakeup, autosleep, and measurement mode
 
   write_accelerometer_register(ACCEL_REG_POWER_CTL, MEASUREMENT_MODE);
@@ -91,7 +95,7 @@ void setup_accelerometer()
   // Select INT 1 for get activities
   setup_interrupt(ACCEL_INT1);
     uint8_t data = read_accelerometer_register(ACCEL_REG_INT_SOURCE);
-
+    (void)data;
 
 }
 
@@ -139,6 +143,7 @@ static uint8_t constrain(uint8_t x, uint8_t a, uint8_t b)
     if ((x>=a) && (x<=b)) return (uint8_t)x;
     if (x<a) return a;
     if (x>b) return b;
+    return 0;
 }
 
 //*****************************************************************************
