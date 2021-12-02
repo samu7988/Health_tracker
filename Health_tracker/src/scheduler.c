@@ -438,28 +438,88 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
 
                sl_status_t status = 0;
 #if ENABLE_BLE == 1
+
+               //Send to client only if indications are enabled and connection is open
+              if(pulse_sensor_char ==  1 && connection_open == 1)
+              {
+                  //Send Pulse sensor value to client
+                  //if there is an inflight indication then enqueue
+                  if(inflight_indication == 0 && is_empty(cbuffer) == CB_EMPTY)
+                  {
+                      status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_BPM, sizeof(BPM), &BPM);
+                      inflight_indication = 1;
+                       #if ENABLE_LOGGING
+                       if(status != SL_STATUS_OK)
+                       {
+                           LOG_INFO("Pulse sensor indication fail %u\n\r",status);
+                       }
+                       else{
+                           LOG_INFO("Pulse sensor indication sent %f\n\r",1);
+                       }
+                       #endif
+
+                  }
+                  else if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
+                  {
+                      indication_t dqued_val;
+                      cb_dequeue(cbuffer, &dqued_val);
+                       #if ENABLE_LOGGING
+                       if(dqued_val.charHandle == gattdb_BPM){
+                           //LOG_INFO("Dequeued Pulse sensor %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
+                           LOG_INFO("Dequeued Pulse sensor %f\n\r",0);
+
+                       }
+                       else if(dqued_val.charHandle == gattdb_Free_fall){
+//                           LOG_INFO("Dequeued button state %d\n\r",dqued_val.buffer[0]);
+                           LOG_INFO("Dequeued free fall value %f\n\r",0);
+
+                       }
+                       #endif
+                      status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
+                      inflight_indication = 1;
+                  }
+                  else
+                  {
+                      indication_t temp;
+                      temp.charHandle = gattdb_BPM;
+                      temp.bufferLength = 1;
+                      memcpy(&temp.buffer[0], &BPM,sizeof(BPM));
+                      if(cb_enqueue(cbuffer, &temp) == CB_ERROR)
+                      {
+                          #if ENABLE_LOGGING
+                          LOG_INFO("Enqueue Pulse error %d\n\r",-1);
+                          #endif
+                      }
+                      else
+                      {
+                          #if ENABLE_LOGGING
+                          LOG_INFO("Enqueue Pulse sensor  %f\n\r",1);
+                          #endif
+                      }
+                  }
+
                //Send to client only if indications are enabled.
-               if(pulse_sensor_char == 1)
-               {
-                   //Send temperature value to client
-                   status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_BPM, sizeof(BPM), &BPM);
-                   inflight_indication = 1; //Indicates indication inflight
-
-                 //Update local gatt database
-                 sl_bt_gatt_server_write_attribute_value(gattdb_BPM,0, sizeof(BPM), &BPM); //Update local gatt database
-
-                   #if ENABLE_LOGGING
-                  if(status == 0){
-                    LOG_INFO("Send indication with BPM %u \n\r",BPM);
-                  }
-                  else{
-                    LOG_INFO("Send indication failed %d\n\r",1);
-                  }
-                  #endif
-
-                  (void)status; //suppress warning for this variable
-               //Send indications to client on next line(TO DO)
-               }
+//               if(pulse_sensor_char == 1)
+//               {
+//                   //Send temperature value to client
+//                   status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_BPM, sizeof(BPM), &BPM);
+//                   inflight_indication = 1; //Indicates indication inflight
+//
+//                 //Update local gatt database
+//                 sl_bt_gatt_server_write_attribute_value(gattdb_BPM,0, sizeof(BPM), &BPM); //Update local gatt database
+//
+//                   #if ENABLE_LOGGING
+//                  if(status == 0){
+//                    LOG_INFO("Send indication with BPM %u \n\r",BPM);
+//                  }
+//                  else{
+//                    LOG_INFO("Send indication failed %d\n\r",1);
+//                  }
+//                  #endif
+//
+//                  (void)status; //suppress warning for this variable
+//               //Send indications to client on next line(TO DO)
+//               }
 #endif
 
              }
@@ -485,12 +545,14 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
            }
 
            state = STATE_MASTER;
-      }
+         }
 
+      }
+      break;
     }
-    break;
   }
 }
+
 
 
 

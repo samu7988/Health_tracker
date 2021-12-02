@@ -59,6 +59,7 @@ cb_status_e is_empty(cb_t* cb_handle);
 cb_status_e cb_enqueue(cb_t* cb_handle, indication_t* val);
 cb_status_e cb_dequeue(cb_t* cb_handle, indication_t* val);
 size_t cb_get_length(cb_t* cb_handle);
+cb_status_e destroy_cb(cb_t* cb_handle);
 
 
 

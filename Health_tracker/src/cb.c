@@ -238,4 +238,12 @@ cb_status_e cb_dequeue(cb_t* cb_handle, indication_t* val){
   return status;
 }
 
-
+cb_status_e destroy_cb(cb_t* cb_handle){
+  if(cb_handle == NULL)
+    return CB_ERROR;
+  else{
+      free(cb_handle->buffer);
+      free(cb_handle);
+  }
+  return CB_NO_ERROR;
+}
