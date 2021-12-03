@@ -161,8 +161,13 @@ void GPIO_ODD_IRQHandler(void)
   // Check if PB1 was pressed
   if (GPIO->IF & (1 << PB1_pin))
   {
-      gpioLed0Toggle();
-      set_scheduler_pb1_button_press_event();
+      button_pressed = !button_pressed; //Indicate whether button is pressed or not
+      if(button_pressed == 0)
+      {
+          LOG_INFO("PB1 state changed\n\r");
+          set_scheduler_pb1_button_press_event();
+
+      }
       GPIO_IntClear(interruptMask);
 
   }

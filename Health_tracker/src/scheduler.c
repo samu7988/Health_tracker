@@ -326,31 +326,70 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
           //Send indications to bluetooth on next line(TO DO)
           //Send to client only if indications are enabled.
 #if ENABLE_BLE == 1
-          if(accelerometer_char == 1)
+
+          //Send to client only if indications are enabled and connection is open
+          if(accelerometer_char ==  1 && connection_open == 1)
           {
               uint8_t free_fall = 1;
-              //Send temperature value to client
-              status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_Free_fall, sizeof(free_fall), &free_fall);
-              inflight_indication = 1; //Indicates indication inflight
 
-            //Update local gatt database
-            sl_bt_gatt_server_write_attribute_value(gattdb_Free_fall,0, sizeof(free_fall), &free_fall); //Update local gatt database
+              //Send Pulse sensor value to client
+              //if there is an inflight indication then enqueue
+              if(inflight_indication == 0 && is_empty(cbuffer) == CB_EMPTY)
+              {
+                  status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_Free_fall, sizeof(free_fall), &free_fall);
+                  inflight_indication = 1;
+                   #if ENABLE_LOGGING
+                   if(status != SL_STATUS_OK)
+                   {
+                       LOG_INFO("Free fall indication fail %u\n\r",status);
+                   }
+                   else{
+                       LOG_INFO("Free fall indication sent %f\n\r",1);
+                   }
+                   #endif
 
-              #if ENABLE_LOGGING
-             if(status == 0){
-               LOG_INFO("Send indication with free fall %u \n\r",1);
-             }
-             else{
-               LOG_INFO("Send indication failed %d\n\r",1);
-             }
-             #endif
+              }
+              else if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
+              {
+                  indication_t dqued_val;
+                  cb_dequeue(cbuffer, &dqued_val);
+                   #if ENABLE_LOGGING
+                   if(dqued_val.charHandle == gattdb_BPM){
+                       LOG_INFO("Dequeued Pulse sensor %f\n\r",0);
 
-             (void)status; //suppress warning for this variable
-          //Send indications to client on next line(TO DO)
+                   }
+                   else if(dqued_val.charHandle == gattdb_Free_fall){
+                       LOG_INFO("Dequeued free fall value %f\n\r",0);
+
+                   }
+                   #endif
+                  status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
+                  inflight_indication = 1;
+              }
+              else
+              {
+                  indication_t temp;
+                  temp.charHandle = gattdb_Free_fall;
+                  temp.bufferLength = 1;
+                  memcpy(&temp.buffer[0], &free_fall,sizeof(free_fall));
+                  if(cb_enqueue(cbuffer, &temp) == CB_ERROR)
+                  {
+                      #if ENABLE_LOGGING
+                      LOG_INFO("Enqueue Free fall %d\n\r",-1);
+                      #endif
+                  }
+                  else
+                  {
+                      #if ENABLE_LOGGING
+                      LOG_INFO("Enqueue free fall  %f\n\r",1);
+                      #endif
+                  }
+              }
+
           }
 #endif
-
       }
+
     }
     break;
     case STATE_ENABLE_TIMER_TWO_MS:
@@ -358,7 +397,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       if(is_letimer_enabled == false)
       {
       //Enable the LETIMER to fire every 2msec for pulse sensor
-          LOG_INFO("User pressed PB1\n\r");
           LETIMER_Enable(LETIMER0,true);
           is_letimer_enabled = true;
       }
@@ -366,7 +404,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       {
           LETIMER_Enable(LETIMER0,false);
           is_letimer_enabled = false;
-          LOG_INFO("User disabled timer\n\r");
       }
       state = STATE_MASTER;
 
@@ -375,12 +412,12 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     break;
     case STATE_PULSE_SENSOR_READ:
     {
-      if(current_event & EVENT_FREE_FALL)
-      {
-          state = STATE_ACCELEROMETER_READ_START;
-      }
-      else
-      {
+//      if(current_event & EVENT_FREE_FALL)
+//      {
+//          state = STATE_ACCELEROMETER_READ_START;
+//      }
+//      else
+//      {
       //Heart beat algorithm
            sampleCounter += 2;                         // keep track of the time in mS with this variable
            int N = sampleCounter - lastBeatTime;       // monitor the time since the last beat to avoid noise
@@ -498,28 +535,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
                       }
                   }
 
-               //Send to client only if indications are enabled.
-//               if(pulse_sensor_char == 1)
-//               {
-//                   //Send temperature value to client
-//                   status = sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,gattdb_BPM, sizeof(BPM), &BPM);
-//                   inflight_indication = 1; //Indicates indication inflight
-//
-//                 //Update local gatt database
-//                 sl_bt_gatt_server_write_attribute_value(gattdb_BPM,0, sizeof(BPM), &BPM); //Update local gatt database
-//
-//                   #if ENABLE_LOGGING
-//                  if(status == 0){
-//                    LOG_INFO("Send indication with BPM %u \n\r",BPM);
-//                  }
-//                  else{
-//                    LOG_INFO("Send indication failed %d\n\r",1);
-//                  }
-//                  #endif
-//
-//                  (void)status; //suppress warning for this variable
-//               //Send indications to client on next line(TO DO)
-//               }
 #endif
 
              }
@@ -544,10 +559,10 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
              secondBeat = false;                    // when we get the heartbeat back
            }
 
-           state = STATE_MASTER;
          }
+           state = STATE_MASTER;
 
-      }
+//      }
       break;
     }
   }
