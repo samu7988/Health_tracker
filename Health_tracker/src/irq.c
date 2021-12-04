@@ -28,6 +28,7 @@ int rollover_count = 0;
 bool button_pressed = 0;
 
 volatile uint32_t Signal = 0; //Define
+static volatile bool is_letimer_enabled = false;
 
 
 
@@ -51,16 +52,7 @@ void LETIMER0_IRQHandler(void){
       set_scheduler_two_ms_event();
 
 
-//      ADC_Start(ADC0, adcStartSingle);
-
   }
-
-//  //if COMP1 match occurs,
-//  if(LETIMER0->IF & LETIMER_IF_COMP1){ //This interrupt is set when user requested time is completed from timerUs_nonblocking
-//      LETIMER_IntClear(LETIMER0, LETIMER_IF_COMP1); //clear the interrupt
-//      LETIMER_IntDisable(LETIMER0, LETIMER_IF_COMP1); //Disable Comp1 interrupt
-//      set_scheduler_user_requested_timer_expire_event(); //set event to indicate timer expire
-//  }
   CORE_EXIT_CRITICAL();
 }
 
@@ -84,7 +76,6 @@ void ADC0_IRQHandler(void)
     // Read data from ADC(0 - 4096)
     Signal = ADC_DataSingleGet(ADC0);
 
-//      LOG_INFO("ADC voltage: %u\n\r",Signal);
     ADC_Start(ADC0, adcStartSingle); //start next adc conversion
 
     CORE_EXIT_CRITICAL();
@@ -134,6 +125,7 @@ void GPIO_EVEN_IRQHandler(void)
        set_scheduler_free_fall_event();
        GPIO_IntClear(1 << ACCELEROMETER_pin);
 
+
    }
 
   // Check if PB0 was pressed(used to confirm bonding)
@@ -165,7 +157,20 @@ void GPIO_ODD_IRQHandler(void)
       if(button_pressed == 0)
       {
           LOG_INFO("PB1 state changed\n\r");
-          set_scheduler_pb1_button_press_event();
+//          set_scheduler_pb1_button_press_event();
+          if(is_letimer_enabled == false)
+          {
+          //Enable the LETIMER to fire every 2msec for pulse sensor
+              LOG_INFO("Enabling the timer\n\r");
+              LETIMER_Enable(LETIMER0,true);
+              is_letimer_enabled = true;
+          }
+          else
+          {
+              LOG_INFO("Disabling the timer\n\r");
+              LETIMER_Enable(LETIMER0,false);
+              is_letimer_enabled = false;
+          }
 
       }
       GPIO_IntClear(interruptMask);

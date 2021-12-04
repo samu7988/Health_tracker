@@ -32,7 +32,6 @@
 //Different states
 typedef enum{
   STATE_MASTER,  //default state
-  STATE_ENABLE_TIMER_TWO_MS,
   STATE_PULSE_SENSOR_READ,
   STATE_ACCELEROMETER_READ_START, //Start reading ACCELEROMETER
   STATE_INTERRUPT_SOURCE_REG_CLEARED,
@@ -40,14 +39,6 @@ typedef enum{
 
 
 
-typedef enum{
-  CLIENT_IDLE,     //DEFAULT
-  SCANNING, //BOOT ID
-  OPENING,  //SCAN REPORT
-  DISCOVER_SERVICE, // OPEN CONNECTION
-  DISCOVER_CHAR, // DISCOVER_SERVICE/PROCESS_COMPLETE
-  INDICATION_ENABLED,
-}client_state_e;
 
 //***********************************************************************************
 //                              Global variables
@@ -58,14 +49,9 @@ extern event_e event; //Declare global variable to extend its visibility
 //                              Function prototype
 
 //***********************************************************************************
-void set_scheduler_temp_event();
-event_e get_scheduler_event();
 void set_scheduler_i2c_event();
 void set_scheduler_two_ms_event();
-void set_scheduler_user_requested_timer_expire_event();
 void set_scheduler_button_press_event();
-void set_scheduler_pb1_button_press_event();
-void set_scheduler_button_release_event();
 void accelerometer_statemachine(sl_bt_msg_t *evt);
 void set_scheduler_free_fall_event();
 void health_tracker_statemachine(sl_bt_msg_t *evt);

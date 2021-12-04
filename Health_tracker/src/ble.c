@@ -368,35 +368,35 @@ void handle_ble_event(sl_bt_msg_t *evt){
        ***********************************************/
     case sl_bt_evt_system_soft_timer_id:
 
-//      if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
-//      {
-//          indication_t dqued_val;
-//          cb_dequeue(cbuffer, &dqued_val);
-//          #if ENABLE_LOGGING
-//          if(dqued_val.charHandle == gattdb_temperature_measurement){
-//              LOG_INFO("==soft timer event: dequeued temperature event %f\n\r",gattFloat32ToInt(&dqued_val.buffer[0]));
-//          }
-////          else if(dqued_val.charHandle == gattdb_button_state){
-////              LOG_INFO("==soft timer event: dequeued button event %d\n\r",dqued_val.buffer[0]);
-////          }
-//          #endif
-//
-//          status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
-//          inflight_indication = 1;
-//
-//
-//        #if ENABLE_LOGGING
-//        if(status == SL_STATUS_OK)
-//        {
-//
-//            LOG_INFO("soft timer success %u\n\r",status);
-//        }
-//        else
-//        {
-//            LOG_INFO("soft timer fail %u\n\r",status);
-//        }
-//        #endif
-//      }
+      if(inflight_indication == 0 && is_empty(cbuffer) == CB_NO_ERROR)
+      {
+          indication_t dqued_val;
+          cb_dequeue(cbuffer, &dqued_val);
+          #if ENABLE_LOGGING
+          if(dqued_val.charHandle == gattdb_BPM){
+              LOG_INFO("Sending BPM values in soft timer event\n\r");
+          }
+          else if(dqued_val.charHandle == gattdb_Free_fall){
+              LOG_INFO("Sending free fall values in soft timer event\n\r");
+          }
+          #endif
+
+          status |= sl_bt_gatt_server_send_indication(ble_common_data->char_connection_handle,dqued_val.charHandle, dqued_val.bufferLength, &dqued_val.buffer[0]);
+          inflight_indication = 1;
+
+
+        #if ENABLE_LOGGING
+        if(status == SL_STATUS_OK)
+        {
+
+            LOG_INFO("soft timer success %u\n\r",status);
+        }
+        else
+        {
+            LOG_INFO("soft timer fail %u\n\r",status);
+        }
+        #endif
+      }
 
       //Prevent charge build up on LCD, occurs every 1 second
 
