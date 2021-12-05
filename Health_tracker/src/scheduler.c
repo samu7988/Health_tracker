@@ -307,6 +307,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       if(current_event & EVENT_FREE_FALL)
       {
           LOG_INFO("Event free fall state machine\n\r");
+          sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1); //Put MCU in EM1
+
           status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
 
           state = STATE_ACCELEROMETER_READ_START;
@@ -318,6 +320,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
           if(free_fall_detected == 1)
           {
               LOG_INFO("Event free fall state machine\n\r");
+              sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1); //Put MCU in EM1
+
               status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
 
               state = STATE_ACCELEROMETER_READ_START;
@@ -363,6 +367,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     {
       if(current_event & EVENT_I2C_DONE)
       {
+          sl_power_manager_remove_em_requirement(SL_POWER_MANAGER_EM1); //Bring MCU out of EM1
+
           LOG_INFO("Reporting values\n\r");
 
           state = STATE_MASTER;

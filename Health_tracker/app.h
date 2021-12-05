@@ -79,7 +79,7 @@
 #define EM2                (2U)
 #define EM3                (3U)
 
-#define LOWEST_ENERGY_MODE (EM0)
+#define LOWEST_ENERGY_MODE (EM3)
 
 
 //Set Energy mode using the following #define
