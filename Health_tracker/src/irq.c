@@ -20,6 +20,7 @@
 #include "src/adc.h"
 #include "src/accelerometer.h"
 #include "app.h"
+#include "src/lcd.h"
 
 //***********************************************************************************
 //                              Global variable
@@ -121,7 +122,6 @@ void GPIO_EVEN_IRQHandler(void)
 
   if (interruptMask & (1 << ACCELEROMETER_pin))
    {
-      LOG_INFO("Scheduling free fall event\n\r");
        set_scheduler_free_fall_event();
        GPIO_IntClear(1 << ACCELEROMETER_pin);
 
@@ -156,18 +156,19 @@ void GPIO_ODD_IRQHandler(void)
       button_pressed = !button_pressed; //Indicate whether button is pressed or not
       if(button_pressed == 0)
       {
-          LOG_INFO("PB1 state changed\n\r");
-//          set_scheduler_pb1_button_press_event();
           if(is_letimer_enabled == false)
           {
           //Enable the LETIMER to fire every 2msec for pulse sensor
-              LOG_INFO("Enabling the timer\n\r");
+
+              displayPrintf(DISPLAY_ROW_9, "Pulse sensor enabled");
+              NVIC_EnableIRQ(ADC0_IRQn);
               LETIMER_Enable(LETIMER0,true);
               is_letimer_enabled = true;
           }
           else
           {
-              LOG_INFO("Disabling the timer\n\r");
+              displayPrintf(DISPLAY_ROW_9, "Pulse sensor disabled");
+              NVIC_DisableIRQ(ADC0_IRQn);
               LETIMER_Enable(LETIMER0,false);
               is_letimer_enabled = false;
           }

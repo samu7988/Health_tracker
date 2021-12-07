@@ -76,7 +76,7 @@ void ADC_init(){
 
     // Enable ADC interrupts
     NVIC_ClearPendingIRQ(ADC0_IRQn);
-    NVIC_EnableIRQ(ADC0_IRQn);
+//    NVIC_EnableIRQ(ADC0_IRQn);
 
     //Start with first conversion
     ADC_Start(ADC0, adcStartSingle);

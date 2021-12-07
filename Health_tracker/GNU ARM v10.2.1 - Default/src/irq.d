@@ -122,7 +122,8 @@ src/irq.o: ../src/irq.c \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_system.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h \
  D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/accelerometer.h \
- D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/app.h
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/app.h \
+ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/lcd.h
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\common\toolchain\inc/sl_gcc_preinclude.h:
 ../src/irq.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_letimer.h:
@@ -252,3 +253,4 @@ D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker\gecko_sdk_3.2.1\platform\emlib\inc/em_adc.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/accelerometer.h:
 D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/app.h:
+D:\Courses\IOT\Project\ Guidance\Project\ECEN5823_Project_Health_tracker\Health_tracker/src/lcd.h:

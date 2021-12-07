@@ -434,7 +434,6 @@ void handle_ble_event(sl_bt_msg_t *evt){
       {
 
          // ble_common_data->button_pressed = 1;//Indicates that PB0 is pressed
-          displayPrintf(DISPLAY_ROW_9, "Button Pressed");
 
           //If bonding has not happened yet then call passkey confirm function once user presses PB0
           if(ble_common_data->bonding == 0)

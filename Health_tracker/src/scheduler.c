@@ -306,7 +306,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
     {
       if(current_event & EVENT_FREE_FALL)
       {
-          LOG_INFO("Event free fall state machine\n\r");
           sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1); //Put MCU in EM1
 
           status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
@@ -319,7 +318,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       {
           if(free_fall_detected == 1)
           {
-              LOG_INFO("Event free fall state machine\n\r");
+
               sl_power_manager_add_em_requirement(SL_POWER_MANAGER_EM1); //Put MCU in EM1
 
               status = I2C_write(&reg_addr[0],1, ACCELEROMETER_SENSOR_ADDRESS,1);
@@ -332,6 +331,7 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
               uint8_t free_fall = 0;
               pb0_press_detected = 0;
               send_free_fall_values_to_client(free_fall);
+              displayPrintf(DISPLAY_ROW_8, "Free fall cleared");
           }
           else
           {
@@ -342,6 +342,8 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       //if PB0 is pressed after bonding is successfully
       else if((current_event & EVENT_BUTTON_PRESSED) && ble_common_data->bonding == 1)
       {
+          displayPrintf(DISPLAY_ROW_8, "Free fall cleared");
+
           uint8_t free_fall = 0;
           send_free_fall_values_to_client(free_fall);
       }
@@ -355,7 +357,6 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       //once previous I2c transaction/transfer is done.
       if(current_event & EVENT_I2C_DONE)
       {
-          LOG_INFO("Starting I2c read\n\r");
 
         status = I2C_read(&read_val[0],1, ACCELEROMETER_SENSOR_ADDRESS,1); //Read values from INT_SOURCE register of accelerometer.
         state = STATE_INTERRUPT_SOURCE_REG_CLEARED;
@@ -369,12 +370,9 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
       {
           sl_power_manager_remove_em_requirement(SL_POWER_MANAGER_EM1); //Bring MCU out of EM1
 
-          LOG_INFO("Reporting values\n\r");
-
           state = STATE_MASTER;
-          LOG_INFO("Free fall detected %u\n\r",1);
           //Send to client only if indications are enabled.
-
+          displayPrintf(DISPLAY_ROW_8, "Free fall detected");
           uint8_t free_fall = 1;
           send_free_fall_values_to_client(free_fall);
       }
@@ -438,22 +436,16 @@ void health_tracker_statemachine(sl_bt_msg_t *evt){
                runningTotal /= 10;                     // average the last 10 IBI values
                BPM = 60000/runningTotal;               // how many beats can fit into a minute? that's BPM!
                BPM = BPM/2; //This is hack to divide the BPM by 2 to get correct readings
-               LOG_INFO("BPM %u \n\r",BPM);
 
-               sl_status_t status = 0;
 
                //Send to client only if indications are enabled and connection is open
+               displayPrintf(DISPLAY_ROW_9, "BPM %d",BPM);
 
                send_pulse_sensor_values_to_client();
 
            }
 
-//           if(event & EVENT_FREE_FALL)
-//           {
-//               uint8_t free_fall = 1;
-//               send_free_fall_values_to_client(free_fall);
-//
-//           }
+
            if (Signal < thresh && Pulse == true)
            {   // when the values are going down, the beat is over
              Pulse = false;                         // reset the Pulse flag so we can do it again
