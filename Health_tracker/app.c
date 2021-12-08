@@ -98,7 +98,7 @@ SL_WEAK void app_init(void)
   I2C_init();
   le_timer_init();
   ADC_init();
-//  displayInit();
+  displayInit();
   create_cb(50);
   displayPrintf(DISPLAY_ROW_ASSIGNMENT,"Health Tracker");
 
@@ -155,7 +155,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
   // Some events require responses from our application code,
   // and don’t necessarily advance our state machines.
   // For assignment 5 uncomment the next 2 function calls
-//  handle_ble_event(evt); // put this code in ble.c/.h
+  handle_ble_event(evt); // put this code in ble.c/.h
 
   health_tracker_statemachine(evt);
 
