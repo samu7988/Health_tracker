@@ -81,7 +81,7 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 
 ## Test Plan
 
-[Link to Test Plan](https://link-to-test-plan-document.com)
+[Link to Test Plan](https://github.com/samu7988/Health_tracker/blob/main/Verification_plan.xlsx)
 
 
 ### Firmware Changes
@@ -109,9 +109,6 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 
 ## Links
 
-* [Web site](https://aimeos.org/integrations/typo3-shop-extension/)
-* [Documentation](https://aimeos.org/docs/TYPO3)
-* [Forum](https://aimeos.org/help/typo3-extension-f16/)
-* [Issue tracker](https://github.com/aimeos/aimeos-typo3/issues)
-* [Source code](https://github.com/aimeos/aimeos-typo3)
+* [Documentation](https://github.com/samu7988/Health_tracker/blob/main/Final_project_report.pdf)
+* [Source code](https://github.com/samu7988/Health_tracker/tree/main/Health_tracker/src)
 
