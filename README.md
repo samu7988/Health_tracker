@@ -28,8 +28,6 @@
 - [Functional Hardware Block Diagram](#functional-hardware-block-diagram)
 - [Functional Software Block Diagram](#functional-software-block-diagram)
 - [Dataflow Diagram](#dataflow-diagram)
-- [Division of Labor](#division-of-labor)
-- [Subsystem Summary](#subsystem-summary)
 - [Test Plan](#test-plan)
 - [Final Report](#final-report)
 - [Energy Profiler Output](#energy-profiler-output)
@@ -78,14 +76,6 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 
 ![Dataflow Diagram](https://github.com/samu7988/Health_tracker/blob/main/Pictures/dataflow.png)
 
-## Division of Labor
-
-The project's hardware components (sensors, boards) were purchased off the shelf. Hardware development constituted about 5% of the effort. The majority of the work was focused on software design and implementation, particularly firmware for sensor reading and BLE communication.
-
-## Subsystem Summary
-
-The project comprises a Blue Gecko server and a mobile client application. The system involves both hardware and software components. The server mostly operates in a low-power mode and sends values to the client every 10 seconds. Both server and client display GATT service values.
-
 ## Test Plan
 
 [Link to Test Plan](https://link-to-test-plan-document.com)
@@ -101,6 +91,13 @@ The project comprises a Blue Gecko server and a mobile client application. The s
 - Implemented accelerometer interrupt for free-fall detection.
 - Developed circular buffer for handling sensor data.
 - Configured GATT characteristics for pulse sensor and accelerometer.
+
+### Energy Profiler Output
+#### When pulse sensor is enabled/disabled
+![Energy Profiler Output Enable Disable](https://github.com/samu7988/Health_tracker/blob/main/Pictures/enabledisable.png))
+
+#### When pulse sensor free-fall is detected
+![Free fall detection](https://github.com/samu7988/Health_tracker/blob/main/Pictures/pulse.png)
 
 ### Challenges Encountered
 
