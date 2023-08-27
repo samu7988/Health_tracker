@@ -16,6 +16,9 @@
 
 ## Table Of Content
 - [Project Proposal](#project-proposal)
+  - [Goal](#goal)
+  - [Student Names](#student-names)
+  - [Project Overview](#project-overview)
 - [TYPO3 setup](#typo3-setup)
     - [Database setup](#database-setup)
     - [Security](#security)
