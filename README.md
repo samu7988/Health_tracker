@@ -98,7 +98,7 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 ### Energy Profiler Output
 
 #### When pulse sensor is enabled/disabled
-![Energy Profiler Output Enable Disable](https://github.com/samu7988/Health_tracker/blob/main/Pictures/enabledisable.png))
+![Energy Profiler Output Enable Disable](https://github.com/samu7988/Health_tracker/blob/main/Pictures/enabledisable.png)
 
 #### When pulse sensor free-fall is detected
 ![Free fall detection](https://github.com/samu7988/Health_tracker/blob/main/Pictures/pulse.png)
