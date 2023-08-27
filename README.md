@@ -85,7 +85,7 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 [Link to Test Plan](https://github.com/samu7988/Health_tracker/blob/main/Verification_plan.xlsx)
 
 
-### Firmware Changes
+## Firmware Changes
 
 - Interfaced the heart rate sensor (pulse sensor).
 - Implemented pulse sensor functionality to read BPM values.
@@ -96,15 +96,15 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 - Developed circular buffer for handling sensor data.
 - Configured GATT characteristics for pulse sensor and accelerometer.
 
-### Energy Profiler Output
+## Energy Profiler Output
 
-#### When pulse sensor is enabled or disabled
+### When pulse sensor is enabled or disabled
 ![Energy Profiler Output Enable Disable](https://github.com/samu7988/Health_tracker/blob/main/Pictures/enabledisable.png)
 
-#### When pulse sensor free-fall is detected
+### When pulse sensor free-fall is detected
 ![Free fall detection](https://github.com/samu7988/Health_tracker/blob/main/Pictures/pulse.png)
 
-### Challenges Encountered
+## Challenges Encountered
 
 - List any challenges faced during this update and how they were resolved.
 
