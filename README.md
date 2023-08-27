@@ -1,4 +1,4 @@
-<a href="https://aimeos.org/">
+<a href="https://healthtracker.org/">
     <img src="https://github.com/samu7988/Health_tracker/blob/main/Pictures/logo.jpeg" alt="Health Tracker logo" title="Health Tracker" align="right" height="60" />
 </a>
 
@@ -9,14 +9,12 @@
 
 > **Goal**
 > 
-> In a world where safety meets innovation,  Health Tracker Project takes center stage. Imagine a scenario where a person's well-being is monitored beyond the ordinary – not just heartbeats, but even the unexpected. Free fall events, those moments when someone needs help the most, are now under the vigilant watch of our technology..
+> In a world where safety meets innovation,  Health Tracker Project takes center stage. Imagine a scenario where a person's well-being is monitored beyond the ordinary – not just heartbeats, but even the unexpected. Free fall events, those moments when someone needs help the most, are now under the vigilant watch of our technology.
 
 
 ![Health-Tracker](https://github.com/samu7988/Health_tracker/blob/main/Pictures/main.png)
 
 # Health Tracker - Pulse Rate & Free Fall Monitoring
-
-
 
 ## Table of Contents
 
@@ -25,12 +23,17 @@
   - [Student Names](#student-names)
 - [High-Level Requirements](#high-level-requirements)
 - [High-Level Design](#high-level-design)
+- [GATT profile](#gatt-profile)
 - [Functional Hardware Block Diagram](#functional-hardware-block-diagram)
 - [Functional Software Block Diagram](#functional-software-block-diagram)
 - [Dataflow Diagram](#dataflow-diagram)
 - [Test Plan](#test-plan)
-- [Final Report](#final-report)
+- [Firmware Changes](#firmware-changes)
 - [Energy Profiler Output](#energy-profiler-output)
+  - [When pulse sensor is enabled/disabled](#pulse-sensor-enable-disable)
+  - [When pulse sensor free-fall is detected](#free-fall-detection)
+- [Challenges Encountered](#challenges-encountered)
+- [Links](#links)
 
 ## Project Proposal
 
@@ -81,7 +84,7 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 [Link to Test Plan](https://link-to-test-plan-document.com)
 
 
-### Firmware
+### Firmware Changes
 
 - Interfaced the heart rate sensor (pulse sensor).
 - Implemented pulse sensor functionality to read BPM values.
@@ -102,7 +105,6 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 ### Challenges Encountered
 
 - List any challenges faced during this update and how they were resolved.
-
 
 ## Links
 
