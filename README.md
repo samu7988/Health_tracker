@@ -62,17 +62,21 @@ The goal of this project is to emulate a health tracker capable of monitoring pu
 
 The project consists of a server (Blue Gecko board) and a client (Bluetooth-based mobile app). The server measures free fall and pulse rate values, which are transmitted to the client via BLE.
 
+### GATT profile
+
+![GATT Profile](https://github.com/samu7988/Health_tracker/blob/main/Pictures/gatt.png)
+
 ### Functional Hardware Block Diagram
 
-![Hardware Diagram](https://link-to-hardware-diagram.com)
+![Hardware Diagram](https://github.com/samu7988/Health_tracker/blob/main/Pictures/HW.png)
 
 ### Functional Software Block Diagram
 
-![Software Diagram](https://link-to-software-diagram.com)
+![Software Diagram](https://github.com/samu7988/Health_tracker/blob/main/Pictures/software.png)
 
 ### Dataflow Diagram
 
-![Dataflow Diagram](https://link-to-dataflow-diagram.com)
+![Dataflow Diagram](https://github.com/samu7988/Health_tracker/blob/main/Pictures/dataflow.png)
 
 ## Division of Labor
 
