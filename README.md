@@ -23,7 +23,6 @@
 - [Project Proposal](#project-proposal)
   - [Goal](#goal)
   - [Student Names](#student-names)
-  - [Project Overview](#project-overview)
 - [High-Level Requirements](#high-level-requirements)
 - [High-Level Design](#high-level-design)
 - [Functional Hardware Block Diagram](#functional-hardware-block-diagram)
@@ -49,10 +48,6 @@ The goal of this project is to emulate a health tracker capable of monitoring pu
 ### Student Names
 
 - Sayali Mule (sayali.mule@colorado.edu)
-
-### Project Overview
-
-Team 16 has chosen to proceed with option 1. The project involves creating a system with a server (Blue Gecko board) and a client (mobile phone application) to monitor pulse rates and detect free falls. The server communicates the collected data to the client via BLE protocol.
 
 ## High-Level Requirements
 
@@ -96,15 +91,6 @@ The project comprises a Blue Gecko server and a mobile client application. The s
 
 [Link to Test Plan](https://link-to-test-plan-document.com)
 
-## Proposed Schedule
-
-Refer to the proposed schedule in the provided document.
-
-## Update 1
-
-### Progress Summary
-
-Summarize the work done in this update.
 
 ### Firmware
 
@@ -112,23 +98,6 @@ Summarize the work done in this update.
 - Implemented pulse sensor functionality to read BPM values.
 - Interfaced the accelerometer (ADXL345) for free fall detection.
 - Developed accelerometer APIs for reading and configuring.
-
-### Challenges Encountered
-
-- List any challenges faced during this update and how they were resolved.
-
-### Proposed Schedule
-
-Refer to the proposed schedule in the provided document.
-
-## Update 2
-
-### Progress Summary
-
-Summarize the work done in this update.
-
-### Firmware
-
 - Verified functionality of pulse sensor and accelerometer.
 - Implemented accelerometer interrupt for free fall detection.
 - Developed circular buffer for handling sensor data.
@@ -137,21 +106,6 @@ Summarize the work done in this update.
 ### Challenges Encountered
 
 - List any challenges faced during this update and how they were resolved.
-
-### Proposed Schedule
-
-Refer to the proposed schedule in the provided document.
-
-## Final Report
-
-### Progress Summary
-
-Summarize the final update and status of the project.
-
-### Firmware
-
-- Verified system functionality and low-power modes.
--
 
 
 ## Links
