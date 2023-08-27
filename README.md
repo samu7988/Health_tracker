@@ -33,6 +33,7 @@
   - [When pulse sensor is enabled or disabled](#When-pulse-sensor-is-enabled/disabled)
   - [When pulse sensor free-fall is detected](#When-pulse-sensor-free-fall-is-detected)
 - [Challenges Encountered](#challenges-encountered)
+- [Project Demo](#project-demo)
 - [Links](#links)
 
 ## Project Proposal
@@ -106,6 +107,8 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 ### Challenges Encountered
 
 - List any challenges faced during this update and how they were resolved.
+
+### [Project Demo](https://github.com/samu7988/Health_tracker/blob/main/Verification_plan.xlsx) 
 
 ## Links
 
