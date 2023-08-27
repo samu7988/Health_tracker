@@ -16,7 +16,7 @@
 
 # Health Tracker - Pulse Rate & Free Fall Monitoring
 
-![Project Logo](https://link-to-your-logo.com)
+
 
 ## Table of Contents
 
@@ -31,12 +31,7 @@
 - [Division of Labor](#division-of-labor)
 - [Subsystem Summary](#subsystem-summary)
 - [Test Plan](#test-plan)
-- [Proposed Schedule](#proposed-schedule)
-- [Update 1](#update-1)
-- [Update 2](#update-2)
 - [Final Report](#final-report)
-- [Distribution of Work](#distribution-of-work)
-- [Learnings](#learnings)
 - [Energy Profiler Output](#energy-profiler-output)
 
 ## Project Proposal
@@ -96,10 +91,10 @@ The project comprises a Blue Gecko server and a mobile client application. The s
 
 - Interfaced the heart rate sensor (pulse sensor).
 - Implemented pulse sensor functionality to read BPM values.
-- Interfaced the accelerometer (ADXL345) for free fall detection.
+- Interfaced the accelerometer (ADXL345) for free-fall detection.
 - Developed accelerometer APIs for reading and configuring.
 - Verified functionality of pulse sensor and accelerometer.
-- Implemented accelerometer interrupt for free fall detection.
+- Implemented accelerometer interrupt for free-fall detection.
 - Developed circular buffer for handling sensor data.
 - Configured GATT characteristics for pulse sensor and accelerometer.
 
