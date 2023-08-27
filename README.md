@@ -30,8 +30,8 @@
 - [Test Plan](#test-plan)
 - [Firmware Changes](#firmware-changes)
 - [Energy Profiler Output](#energy-profiler-output)
-  - [When pulse sensor is enabled/disabled](#pulse-sensor-enable-disable)
-  - [When pulse sensor free-fall is detected](#free-fall-detection)
+  - [When pulse sensor is enabled/disabled](#When-pulse-sensor-is-enabled/disabled)
+  - [When pulse sensor free-fall is detected](#When-pulse-sensor-free-fall-is-detected)
 - [Challenges Encountered](#challenges-encountered)
 - [Links](#links)
 
@@ -96,6 +96,7 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 - Configured GATT characteristics for pulse sensor and accelerometer.
 
 ### Energy Profiler Output
+
 #### When pulse sensor is enabled/disabled
 ![Energy Profiler Output Enable Disable](https://github.com/samu7988/Health_tracker/blob/main/Pictures/enabledisable.png))
 
