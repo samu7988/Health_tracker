@@ -108,7 +108,8 @@ The project consists of a server (Blue Gecko board) and a client (Bluetooth-base
 
 - List any challenges faced during this update and how they were resolved.
 
-### [Project Demo](https://github.com/samu7988/Health_tracker/blob/main/Verification_plan.xlsx) 
+## Project Demo
+[Link to Project Demo](https://github.com/samu7988/Health_tracker/blob/main/Verification_plan.xlsx) 
 
 ## Links
 
